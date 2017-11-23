@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ItemDetailsPage } from '../pages/item-details/item-details';
 
 @Component({
   selector: 'page-list',
