@@ -1,0 +1,37 @@
+# Create a project
+ionic start ProjectIonic
+cd ProjectIonic
+# Test project on Browser
+ionic serve [options]
+	Options:
+		[--consolelogs|-c] ......  Show app console log
+		[--serverlogs|-s] .......  Show server logs
+		[--port|-p] .............  HTTP port of the server (default: 8100)
+		[--livereload-port|-i] ..  Live Reload port (default: 35729)
+		[--nobrowser|-b] ........  Disable browser launch
+		[--nolivereload|-r] .....  Don't launch live reload
+		[--noproxy|-x] ..........  Don't add proxies
+		[--lab] .................  Show app in an android/IOS screen
+
+# List of available template
+ionic start --list
+
+# Add android for the tests
+ionic cordova platform add android
+
+# Test for android
+ionic build android
+ionic run android [options]
+	Options:
+		[--livereload|-l] .......  Live Reload (beta)
+		[--consolelogs|-c] ......  Show app console log
+		[--serverlogs|-s] .......  Show server logs
+		[--port|-p] .............  HTTP port of the server (default: 8100)
+		[--livereload-port|-i] ..  Live Reload port (default: 35729)
+		
+# Generate new versions for icon+splashscreen
+ionic resources
+# Generate new version for icon
+ionic resources --icon
+# Generate new version for splashcreen
+ionic resources --splash
