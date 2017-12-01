@@ -1,0 +1,12 @@
+# change model in models.py
+# create migration for the changes
+python manage.py makemigrations app
+# apply changes
+python manage.py migrate
+
+# show models in SQL
+python manage.py sqlmigrate app XXXX
+# XXXX = # of migration
+
+# using the API
+python manage.py shell

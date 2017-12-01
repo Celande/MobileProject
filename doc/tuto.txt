@@ -1,0 +1,6 @@
+https://docs.djangoproject.com/en/dev/topics/db/models/#meta-options
+https://docs.djangoproject.com/en/dev/topics/db/queries/#retrieving-all-objects
+https://www.digitalocean.com/community/tutorials/how-to-use-mysql-or-mariadb-with-your-django-application-on-ubuntu-14-04
+https://docs.djangoproject.com/en/1.11/intro/tutorial03/
+https://www.tutorialspoint.com/python/python_dictionary.htm
+https://docs.djangoproject.com/fr/1.11/topics/templates/

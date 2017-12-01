@@ -1,0 +1,26 @@
+# create python backend project
+virtualenv NAME
+
+# change virtual environment
+source NAME/bin/activate
+
+# leave virtual environment
+deactivate
+
+# in the django project
+# debug server
+python manage.py runserver
+
+sraullet.freeboxos.fr
+
+# on OS
+sudo apt-get install python-dev
+
+# on virtualenv
+pip install django unipath djangorestframework django-redis django-redis-sessions django-websocket-redis redis mysqlclient setuptools
+
+# migrate a db already existing
+python manage.py inspectdb
+
+# run backend
+python manage.py runserver 0.0.0.0:8000

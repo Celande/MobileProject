@@ -1,0 +1,47 @@
+To create a page
+
+PAGE for the name
+
+1.Create folder in src/app
+2.Create a PAGE.html and a PAGE.ts file (+ PAGE.scss file)
+3.In the ts file PAGE.ts:
+	A.Must import:
+		import { Component } from '@angular/core'; to make it work
+		import { NavController } from 'ionic-angular'; to add it to the navbar
+	B.Must add:
+		@Component({
+		  selector: 'page-PAGE',
+		  templateUrl: 'PAGE.html'
+		})
+	C.Must create the class:
+		export class PAGEPage {
+		  constructor(public navCtrl: NavController) {
+
+		  }
+		}
+
+4.In the html file, PAGE.html:
+	<ion-header>
+	  <ion-navbar>
+		<button ion-button menuToggle>
+		  <ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>PAGE</ion-title>
+	  </ion-navbar>
+	</ion-header>
+
+
+	<ion-content padding>
+
+	  <h3>PAGE page</h3>
+
+	  DO WHAT YOU WANNA DO IN HTML
+	</ion-content>
+
+5.In the src/app/app.modules.ts:
+	A.Must import the new page: import { PAGEPage } from '../pages/PAGE/PAGE';
+	B.Must add the new page in the NgModule declarations and entryComponents
+	
+6.In the src/app/app.component.ts file:
+	A.Must import the page: import { PAGEPage } from '../pages/PAGE/PAGE';
+	B.Must add the page to the list of page, so it can be seen in the navbar: { title: 'PAGE', component: PagePage }
