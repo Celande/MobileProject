@@ -13,10 +13,30 @@
   <h3>Goat page</h3>
 
   <p>
-    Trying to do things. 3:{{ name }}
+    Trying to do things.
   </p>
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      {{item?.title}}
+      <div class="item-note" item-end>
+        {{item?.note}}
+      </div>
+    </button>
+    <button ion-item *ngFor="let goat of goats">
+      {{goat?.name}}
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem?.title}}</b>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">Error: {{errorMessage}}</p>
+  <p class="error" *ngIf="data">Data: {{data}}</p>
+  <p class="error" *ngIf="goats">Goats: {{goats}}</p>
 
   <p>
     <button ion-button color="primary" menuToggle>Toggle Menu</button>
   </p>
+
 </ion-content>
