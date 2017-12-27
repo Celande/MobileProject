@@ -31,9 +31,12 @@ class BreedController extends CommonController
     // Get all images from DB
     $imgs = ImageController::getBreedImages($request, $response);
 
-    return $this->view->render($response, 'breeds.twig',
-        array('breeds' => $breeds, 'imgs' => $imgs)
-          );
+    foreach($breeds as $breed){
+      $breed->img_path = ImageController::getImageById($request, $response, $breed->img_id);
+      $array[] = $breed;
+    }
+      $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+      return $response->withJson($array);
   }
 
   /** showBreed

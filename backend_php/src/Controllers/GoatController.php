@@ -43,23 +43,15 @@ class GoatController extends CommonController
     $array = array();
     foreach($goats as $goat){
       //$ages[$goat->id] = $this->getAge($goat->birthdate);
+      $goat->img_path = ImageController::getImageById($request, $response, $goat->img_id);
+      $goat->breed_name = BreedController::getBreedById($request, $response, $goat->breed_id)->name;
       $array[] = $goat;
     }
+    //$array = array('goats' => $array);
 
-    header("Access-Control-Allow-Origin: *");
-    if(count($array) > 0){
-      print json_encode($array);
-    } else { return "0 result"; }
+      $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+    return $response->withJson($array);
 
-    /*
-    return $this->view->render($response, 'home.twig',
-    array(
-      'goats' => $goats,
-      'breeds' => $breeds,
-      'imgs' => $imgs,
-      'ages' => $ages
-    ));
-    */
   }
 
   /** showGoat

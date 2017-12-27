@@ -105,7 +105,8 @@ $container[App\Controllers\ImageController::class] = function ($c) {
   $view = $c->get('view');
   $logger = $c->get('logger');
   $table = $c->get('db')->table('image');
-  return new App\Controllers\ImageController($view, $logger, $table, NULL);
+  $imgDir = 'img/';
+  return new App\Controllers\ImageController($view, $logger, $table, $imgDir);
 };
 
 //Override the default Not Found Handler

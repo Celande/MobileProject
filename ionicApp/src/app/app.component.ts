@@ -9,7 +9,7 @@ import { GoatPage } from '../pages/goat/goat.page';
 
 import { BuyAGoatPage } from '../pages/buy-a-goat/buy-a-goat';
 import { SellAGoatPage } from '../pages/sell-a-goat/sell-a-goat';
-import { BreedsPage } from '../pages/breeds/breeds';
+import { BreedsPage } from '../pages/breeds/breeds.page';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +17,8 @@ import { BreedsPage } from '../pages/breeds/breeds';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = BuyAGoatPage;
+  //rootPage: any = BuyAGoatPage;
+  rootPage: any = GoatPage; // for tests
 
   pages: Array<{title: string, component: any}>;
 

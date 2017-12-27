@@ -4,41 +4,32 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Goat } from './goat';
+import { GoatInterface } from './goat';
 
 @Injectable()
 export class GoatService {
-  private goatsUrl: string = 'http://localhost:8080/goats';  // URL to web API
+  apiUrl: string = 'http://localhost:8080/';
+  private goatsUrl: string = this.apiUrl + 'goats';  // URL to web API
+  private imgUrl: string = this.apiUrl + 'image/';  // URL to web API
+  img: any;
 
   constructor (private http: Http) {}
 
-  getGoats()/*: Observable<Goat[]> */{
-    let test;
-    this.http.get(this.goatsUrl).map(this.extractData).subscribe(goats=>test=goats);
-    console.log(test);
-    /*
-    let promise = new Promise((resolve, reject) => {
-    this.http.get(this.goatsUrl)
-      .toPromise()
-      .then(
-        res => { // Success
-          console.log(res.json());
-          resolve();
-        }
-      );
-  });
-  return promise;
-  */
-  /*
-    return this.http.get(this.goatsUrl);
-                    //.map(this.extractData);
-                    //.catch(this.handleError);
-                    */
+  getGoats(): Observable<GoatInterface[]> {
+    return this.http.get(this.goatsUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+
   }
 
   private extractData(res: Response) {
+    //console.log("Res = " + res);
     let body = res.json();
-    return body.data || { };
+    //console.log("Body = " + body);
+    console.log("Stringify Body = " + JSON.stringify(body));
+    return body;
+
+    //return body.data;
   }
 
   private handleError (error: Response | any) {

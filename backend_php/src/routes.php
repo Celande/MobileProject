@@ -27,6 +27,8 @@ $app->group('/goats', function(){
   $this->get('/{id}', 'App\Controllers\GoatController:showGoat');
 });
 
+$app->get('/image/{id}', 'App\Controllers\ImageController:getImageJsonById');
+
 // Success returned if goat successfully added/updated/removed
 // Return to the goat list after a littke delay
 $app->get('/success', function (Request $request, Response $response) {
@@ -61,8 +63,10 @@ $app->get('/405', function (Request $request, Response $response) {
   return $notAllowedHandler($request, $response, $methods);
 });
 
+/*
 // Home page
 $app->get('/', function (Request $request, Response $response) {
   //$this->logger->addInfo("Route /");
   return $response->withRedirect('/goats');
 });
+*/

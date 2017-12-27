@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-/*
-export interface Goat {
+export interface GoatInterface {
     id: number,
     name: string,
     price: number,
@@ -10,9 +9,17 @@ export interface Goat {
     gender: string,
     localisation: string,
     description?: string,
-    img_id: number
+    img_id: number,
+    img_path: string
 }
-*/
+
+export interface ImgInterface {
+    path: string,
+    type: string,
+    num: number,
+    ext: string,
+    id: number
+}
 
 export class Goat {
     id: number;
