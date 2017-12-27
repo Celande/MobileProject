@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,24 +7,36 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { GoatPage } from '../pages/goat/goat.page';
 
+import { BuyAGoatPage } from '../pages/buy-a-goat/buy-a-goat';
+import { SellAGoatPage } from '../pages/sell-a-goat/sell-a-goat';
+import { BreedsPage } from '../pages/breeds/breeds';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = BuyAGoatPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public menu: MenuController,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+  ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+    // set our app's pages
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Goat', component: GoatPage }
+      { title: 'Goat', component: GoatPage },
+      { title: 'Buy A Goat', component: BuyAGoatPage },
+      { title: 'Sell A Goat', component: SellAGoatPage },
+      { title: 'Breeds', component: BreedsPage }
     ];
 
   }
@@ -39,8 +51,9 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
 }
