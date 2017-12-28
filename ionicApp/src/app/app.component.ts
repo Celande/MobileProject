@@ -17,8 +17,8 @@ import { BreedsPage } from '../pages/breeds/breeds.page';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: any = BuyAGoatPage;
-  rootPage: any = SellAGoatPage; // for tests
+  rootPage: any = BuyAGoatPage;
+  //rootPage: any = SellAGoatPage; // for tests
 
   pages: Array<{title: string, component: any}>;
 
