@@ -18,7 +18,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any = BuyAGoatPage;
-  rootPage: any = GoatPage; // for tests
+  rootPage: any = SellAGoatPage; // for tests
 
   pages: Array<{title: string, component: any}>;
 

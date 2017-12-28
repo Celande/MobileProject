@@ -15,7 +15,7 @@ import { GoatInformationPage } from '../pages/goat-information/goat-information'
 import { SellAGoatPage } from '../pages/sell-a-goat/sell-a-goat';
 import { BreedsPage } from '../pages/breeds/breeds.page';
 import { UpdatePage } from '../pages/update/update';
-import { BreedsInfoPage } from '../pages/breeds-info/breeds-info';
+import { BreedInfoPage } from '../pages/breed-info/breed-info';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SellAGoatPage,
     BreedsPage,
     UpdatePage,
-    BreedsInfoPage
+    BreedInfoPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SellAGoatPage,
     BreedsPage,
     UpdatePage,
-    BreedsInfoPage
+    BreedInfoPage
   ],
   providers: [
     StatusBar,

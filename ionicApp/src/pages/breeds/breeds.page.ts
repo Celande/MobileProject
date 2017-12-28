@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BreedsService } from './breeds.service';
 import { BreedInterface } from './breeds';
 
-import { BreedsInfoPage } from '../breeds-info/breeds-info';
+import { BreedInfoPage } from '../breed-info/breed-info';
 
 @Component({
   selector: 'page-breeds',
@@ -32,13 +32,12 @@ export class BreedsPage implements OnInit {
                      error =>  console.log(error));
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BreedsPage');
+  openBreedInfoPage(id: number){
+    console.log("Open BreedInfoPage");
+    this.navCtrl.push(BreedInfoPage, {id: id});
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(BreedsInfoPage, {
-      item: item
-    });
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad BreedsPage');
   }
 }

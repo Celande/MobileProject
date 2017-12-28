@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 288:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BreedsInfoPageModule", function() { return BreedsInfoPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BreedInfoPageModule", function() { return BreedInfoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breeds_info__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breed_info__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var BreedsInfoPageModule = (function () {
-    function BreedsInfoPageModule() {
+var BreedInfoPageModule = (function () {
+    function BreedInfoPageModule() {
     }
-    BreedsInfoPageModule = __decorate([
+    BreedInfoPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__breeds_info__["a" /* BreedsInfoPage */],
+                __WEBPACK_IMPORTED_MODULE_2__breed_info__["a" /* BreedInfoPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__breeds_info__["a" /* BreedsInfoPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__breed_info__["a" /* BreedInfoPage */]),
             ],
         })
-    ], BreedsInfoPageModule);
-    return BreedsInfoPageModule;
+    ], BreedInfoPageModule);
+    return BreedInfoPageModule;
 }());
 
-//# sourceMappingURL=breeds-info.module.js.map
+//# sourceMappingURL=breed-info.module.js.map
 
 /***/ })
 

@@ -3,25 +3,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Goat Information</ion-title>
+    <ion-title>{{ goat ? goat.name : 'Goat Information' }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <h3 text-center *ngIf="selectedItem">
-    {{selectedItem.title}}
+<ion-content padding *ngIf="goat">
+  <h3 text-center>
+    {{goat.name}}
   </h3>
-  <img src="assets/img/goat.png"/>
-  <h4 text-center *ngIf="selectedItem">
-    You navigated here from {{selectedItem.title}}<br>
-    Price-<br>
-    Gender-<br>
-    Breed-<br>
-    Location-<br>
-    Identification-<br>
-    Birthday-<br>
-    Description-<br>
+  <img text-center width="80" src='{{ apiUrl + goat.img_path }}'>
+  <h4 class="capitalize" text-center>
+    Price: €{{ goat.price }}<br>
+    Gender: {{ goat.gender }}<br>
+    Breed: <a (click)="openBreedInfoPage(goat.breed_id)">{{ goat.breed_name }}</a><br>
+    Age: {{ goat.age }}<br>
+    Location: {{ goat.localisation }}<br>
+    Birthdate: {{ goat.birthdate }}<br>
+  </h4>
+  <h4 text-center>
+    Identification: {{ goat.identification }}<br>
+    Description: {{ goat.descrption }}
   </h4>
   <p>
     <button ion-button full (click)="openUpdatePage()">Update</button>

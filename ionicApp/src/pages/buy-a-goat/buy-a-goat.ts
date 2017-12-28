@@ -44,4 +44,9 @@ export class BuyAGoatPage implements OnInit {
     console.log('ionViewDidLoad BuyAGoatPage');
   }
 
+  openGoatInformationPage(id: number){
+    console.log("Open GoatInformationPage");
+    this.navCtrl.push(GoatInformationPage, {id: id});
+  }
+
 }

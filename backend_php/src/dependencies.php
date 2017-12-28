@@ -82,31 +82,31 @@ $container['view'] = function ($container) {
   return $view;
 };
 
-// Controller of the breed table
-$container[App\Controllers\BreedController::class] = function ($c) {
+// Mobile of the breed table
+$container[App\Mobiles\BreedMobile::class] = function ($c) {
   $view = $c->get('view');
   $logger = $c->get('logger');
   $table = $c->get('db')->table('breed');
   $imgDir = $c->get('img_breed');
-  return new App\Controllers\BreedController($view, $logger, $table, $imgDir);
+  return new App\Mobiles\BreedMobile($view, $logger, $table, $imgDir);
 };
 
-// Controller of the goat table
-$container[App\Controllers\GoatController::class] = function ($c) {
+// Mobile of the goat table
+$container[App\Mobiles\GoatMobile::class] = function ($c) {
   $view = $c->get('view');
   $logger = $c->get('logger');
   $table = $c->get('db')->table('goat');
   $imgDir = $c->get('img_goat');
-  return new App\Controllers\GoatController($view, $logger, $table, $imgDir);
+  return new App\Mobiles\GoatMobile($view, $logger, $table, $imgDir);
 };
 
-// Controller of the image table
-$container[App\Controllers\ImageController::class] = function ($c) {
+// Mobile of the image table
+$container[App\Mobiles\ImageMobile::class] = function ($c) {
   $view = $c->get('view');
   $logger = $c->get('logger');
   $table = $c->get('db')->table('image');
   $imgDir = 'img/';
-  return new App\Controllers\ImageController($view, $logger, $table, $imgDir);
+  return new App\Mobiles\ImageMobile($view, $logger, $table, $imgDir);
 };
 
 //Override the default Not Found Handler

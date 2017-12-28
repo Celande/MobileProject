@@ -3,31 +3,32 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->group('/breeds', function (){{
+$app->group('/mobile', function(){
+$this->group('/breeds', function (){{
   // Get all goat breeds from the database
-  $this->get('', 'App\Controllers\BreedController:showBreeds');
+  $this->get('', 'App\Mobiles\BreedMobile:showBreeds');
   // Get info on one goat breed from the database
-  $this->get('/{id}', 'App\Controllers\BreedController:showBreed');
+  $this->get('/{id}', 'App\Mobiles\BreedMobile:showBreed');
 }});
 
-$app->group('/goats', function(){
+$this->group('/goats', function(){
   // Get list of all goats from the DB
-  $this->get('', 'App\Controllers\GoatController:showGoats');
+  $this->get('', 'App\Mobiles\GoatMobile:showGoats');
   // GET: Get access to the form to add a goat
   // POST: Add the goat to the DB if its identification isn't already in
-  $this->map(['GET', 'POST'], '/add', 'App\Controllers\GoatController:addGoat');
+  $this->map(['GET', 'POST'], '/add', 'App\Mobiles\GoatMobile:addGoat');
   // Remove a goat from the DB
-  $this->post('/remove', 'App\Controllers\GoatController:removeGoat');
+  $this->post('/remove', 'App\Mobiles\GoatMobile:removeGoat');
   // GET: Get access to the form to modify data on a goat
   // POST: Replace updated goat in the DB
-  $this->map(['GET', 'POST'], '/update', 'App\Controllers\GoatController:updateGoat');
+  $this->map(['GET', 'POST'], '/update', 'App\Mobiles\GoatMobile:updateGoat');
   // TODO : Search
-  $this->post('/search', 'App\Controllers\GoatController:searchGoat');
+  $this->post('/search', 'App\Mobiles\GoatMobile:searchGoat');
   // Get info on one goat
-  $this->get('/{id}', 'App\Controllers\GoatController:showGoat');
+  $this->get('/{id}', 'App\Mobiles\GoatMobile:showGoat');
 });
-
-$app->get('/image/{id}', 'App\Controllers\ImageController:getImageJsonById');
+$this->get('/image/{id}', 'App\Mobiles\ImageMobile:getImageJsonById');
+});
 
 // Success returned if goat successfully added/updated/removed
 // Return to the goat list after a littke delay

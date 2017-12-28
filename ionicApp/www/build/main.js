@@ -1,53 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 103:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedsInfoPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var BreedsInfoPage = (function () {
-    function BreedsInfoPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    BreedsInfoPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BreedsInfoPage');
-    };
-    BreedsInfoPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breeds-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds-info/breeds-info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Breeds Information</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3 text-center>\n    Breeds Name<br>    \n  </h3>\n  \n  <img src="assets/img/goat.png"/>\n  <br>...Info...\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds-info/breeds-info.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], BreedsInfoPage);
-    return BreedsInfoPage;
-}());
-
-//# sourceMappingURL=breeds-info.js.map
-
-/***/ }),
-
-/***/ 104:
+/***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BuyAGoatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_information_goat_information__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__goat_service__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_information_goat_information__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__goat_service__ = __webpack_require__(264);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -87,9 +48,13 @@ var BuyAGoatPage = (function () {
     BuyAGoatPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad BuyAGoatPage');
     };
+    BuyAGoatPage.prototype.openGoatInformationPage = function (id) {
+        console.log("Open GoatInformationPage");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__goat_information_goat_information__["a" /* GoatInformationPage */], { id: id });
+    };
     BuyAGoatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-buy-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/buy-a-goat/buy-a-goat.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-card ion-item *ngFor="let goat of goats" (click)="someFunction()">\n\n    <ion-img width="80" src=\'{{ apiUrl + goat?.img_path }}\'></ion-img>\n\n\n\n    <ion-card-content>\n\n      <ion-card-title>\n\n        {{goat?.name}}\n\n      </ion-card-title>\n\n      <p class="capitalize">\n\n        €{{goat?.price}}<br>\n\n        {{goat?.gender}}<br>\n\n        {{goat?.breed_name}}<br>\n\n      </p>\n\n    </ion-card-content>\n\n\n\n    <ion-row no-padding>\n\n      <ion-col>\n\n        <button ion-button clear small color="default" icon-start (click)=\'itemTapped(event, item)\'>\n\n          <ion-icon name=\'arrow-forward\'></ion-icon>\n\n          Read more\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/buy-a-goat/buy-a-goat.html"*/,
+            selector: 'page-buy-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/buy-a-goat/buy-a-goat.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-card *ngFor="let goat of goats" (click)="openGoatInformationPage(goat.id)">\n\n      <img width="80" src=\'{{ apiUrl + goat?.img_path }}\'>\n\n    <ion-card-content>\n\n      <ion-card-title>\n\n        {{goat?.name}}\n\n      </ion-card-title>\n\n      <p class="capitalize">\n\n        €{{goat?.price}}<br>\n\n        {{goat?.gender}}<br>\n\n        {{goat?.breed_name}}<br>\n\n      </p>\n\n    </ion-card-content>\n\n\n\n    <ion-row no-padding>\n\n      <ion-col>\n\n        <button ion-button clear small color="default" icon-start (click)=\'itemTapped(event, item)\'>\n\n          <ion-icon name=\'arrow-forward\'></ion-icon>\n\n          Read more\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/buy-a-goat/buy-a-goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__goat_service__["a" /* GoatService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
@@ -103,14 +68,16 @@ var BuyAGoatPage = (function () {
 
 /***/ }),
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatInformationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_update__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_information_service__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__update_update__ = __webpack_require__(107);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -124,19 +91,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var GoatInformationPage = (function () {
-    function GoatInformationPage(navCtrl, navParams, alertCtrl) {
+    function GoatInformationPage(navCtrl, navParams, alertCtrl, goatInformationService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
+        this.goatInformationService = goatInformationService;
+        this.mode = 'Observable';
+        this.apiUrl = this.goatInformationService.apiUrl;
+        this.id = navParams.get('id');
     }
+    GoatInformationPage.prototype.ngOnInit = function () {
+        console.log("ngOnInit");
+        console.log("id = " + this.id);
+        this.getGoat(this.id);
+    };
+    GoatInformationPage.prototype.getGoat = function (id) {
+        var _this = this;
+        this.goatInformationService.getGoat(id)
+            .subscribe(function (goat) { return _this.goat = goat; }, function (error) { return console.log(error); });
+    };
+    GoatInformationPage.prototype.openBreedInfoPage = function (id) {
+        console.log("Open BreedInfoPage");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info__["a" /* BreedInfoPage */], { id: id });
+    };
     GoatInformationPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad GoatInformationPage');
     };
     GoatInformationPage.prototype.openUpdatePage = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__update_update__["a" /* UpdatePage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__update_update__["a" /* UpdatePage */]);
     };
     GoatInformationPage.prototype.showConfirm = function () {
         var confirm = this.alertCtrl.create({
@@ -161,9 +146,13 @@ var GoatInformationPage = (function () {
     };
     GoatInformationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Goat Information</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center *ngIf="selectedItem">\n    {{selectedItem.title}}\n  </h3>\n  <img src="assets/img/goat.png"/>\n  <h4 text-center *ngIf="selectedItem">\n    You navigated here from {{selectedItem.title}}<br>\n    Price-<br>\n\n    Gender-<br>\n\n    Breed-<br>\n    Location-<br>\n    Identification-<br>\n    Birthday-<br>\n    Description-<br>\n  </h4>\n  <p>\n    <button ion-button full (click)="openUpdatePage()">Update</button>\n    <button ion-button full (click)="showConfirm()">Remove</button>\n  </p>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/,
+            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding *ngIf="goat">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoPage(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full (click)="openUpdatePage()">Update</button>\n    <button ion-button full (click)="showConfirm()">Remove</button>\n  </p>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */]])
     ], GoatInformationPage);
     return GoatInformationPage;
 }());
@@ -172,13 +161,13 @@ var GoatInformationPage = (function () {
 
 /***/ }),
 
-/***/ 106:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -222,13 +211,13 @@ var UpdatePage = (function () {
 
 /***/ }),
 
-/***/ 107:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SellAGoatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -252,7 +241,7 @@ var SellAGoatPage = (function () {
     };
     SellAGoatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sell-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Location</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="number" placeholder="Number Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Birthday</ion-label>\n\n    <ion-input type="number" placeholder="Number Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-input placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n<button ion-button>Add a IMG</button>\n\n\n\n<button ion-button full (click)="update()">Save</button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/,
+            selector: 'page-sell-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" [(ngModel)]="goat.name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select [(ngModel)]="goat.gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select [(ngModel)]="goat.breed_id" interface="popover">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Location</ion-label>\n\n    <ion-input type="text" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" type="number" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Birthday</ion-label>\n\n    <ion-input type="date" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n<button ion-button>Add a IMG</button>\n\n\n\n<button ion-button type="submit" full (click)="update()">Sell</button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], SellAGoatPage);
@@ -263,7 +252,7 @@ var SellAGoatPage = (function () {
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -276,32 +265,32 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 118;
+webpackEmptyAsyncContext.id = 119;
 
 /***/ }),
 
-/***/ 160:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/breeds-info/breeds-info.module": [
-		288,
+	"../pages/breed-info/breed-info.module": [
+		291,
 		4
 	],
 	"../pages/buy-a-goat/buy-a-goat.module": [
-		289,
+		292,
 		3
 	],
 	"../pages/goat-information/goat-information.module": [
-		290,
+		293,
 		2
 	],
 	"../pages/sell-a-goat/sell-a-goat.module": [
-		291,
+		294,
 		1
 	],
 	"../pages/update/update.module": [
-		292,
+		295,
 		0
 	]
 };
@@ -316,18 +305,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 160;
+webpackAsyncContext.id = 161;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -356,13 +345,13 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -413,14 +402,14 @@ var ListPage = (function () {
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_service__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_service__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -480,15 +469,15 @@ var GoatPage = (function () {
 
 /***/ }),
 
-/***/ 208:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breeds_service__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breeds_info_breeds_info__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breeds_service__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -520,36 +509,34 @@ var BreedsPage = (function () {
         this.breedsService.getBreeds()
             .subscribe(function (breeds) { return _this.breeds = breeds; }, function (error) { return console.log(error); });
     };
+    BreedsPage.prototype.openBreedInfoPage = function (id) {
+        console.log("Open BreedInfoPage");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info__["a" /* BreedInfoPage */], { id: id });
+    };
     BreedsPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad BreedsPage');
     };
-    BreedsPage.prototype.itemTapped = function (event, item) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__breeds_info_breeds_info__["a" /* BreedsInfoPage */], {
-            item: item
-        });
-    };
     BreedsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let breed of breeds" (click)=\'itemTapped(event, item)\'>\n\n        <img width="80" src=\'{{ apiUrl + breed?.img_path }}\'> {{breed?.name}}\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds/breeds.html"*/,
+            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let breed of breeds" (click)=\'openBreedInfoPage(breed.id)\'>\n\n        <img *ngIf="breed.img_path" width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'> {{breed?.name}}\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breeds/breeds.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */]])
     ], BreedsPage);
     return BreedsPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=breeds.page.js.map
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(234);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -557,28 +544,28 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_goat_goat_page__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_buy_a_goat_buy_a_goat__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_goat_information_goat_information__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_sell_a_goat_sell_a_goat__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_breeds_breeds_page__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_update_update__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_breeds_info_breeds_info__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_splash_screen__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_goat_goat_page__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_buy_a_goat_buy_a_goat__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_goat_information_goat_information__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_sell_a_goat_sell_a_goat__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_breeds_breeds_page__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_update_update__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_breed_info_breed_info__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_splash_screen__ = __webpack_require__(205);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -617,13 +604,13 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__pages_sell_a_goat_sell_a_goat__["a" /* SellAGoatPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_breeds_breeds_page__["a" /* BreedsPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_update_update__["a" /* UpdatePage */],
-                __WEBPACK_IMPORTED_MODULE_14__pages_breeds_info_breeds_info__["a" /* BreedsInfoPage */]
+                __WEBPACK_IMPORTED_MODULE_14__pages_breed_info_breed_info__["a" /* BreedInfoPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/breeds-info/breeds-info.module#BreedsInfoPageModule', name: 'BreedsInfoPage', segment: 'breeds-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/breed-info/breed-info.module#BreedInfoPageModule', name: 'BreedInfoPage', segment: 'breed-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/buy-a-goat/buy-a-goat.module#BuyAGoatPageModule', name: 'BuyAGoatPage', segment: 'buy-a-goat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/goat-information/goat-information.module#GoatInformationPageModule', name: 'GoatInformationPage', segment: 'goat-information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sell-a-goat/sell-a-goat.module#SellAGoatPageModule', name: 'SellAGoatPage', segment: 'sell-a-goat', priority: 'low', defaultHistory: [] },
@@ -645,7 +632,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__pages_sell_a_goat_sell_a_goat__["a" /* SellAGoatPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_breeds_breeds_page__["a" /* BreedsPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_update_update__["a" /* UpdatePage */],
-                __WEBPACK_IMPORTED_MODULE_14__pages_breeds_info_breeds_info__["a" /* BreedsInfoPage */]
+                __WEBPACK_IMPORTED_MODULE_14__pages_breed_info_breed_info__["a" /* BreedInfoPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_status_bar__["a" /* StatusBar */],
@@ -661,21 +648,30 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 258:
+/***/ 259:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedInfoService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_common_service__ = __webpack_require__(44);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -691,66 +687,170 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GoatService = (function () {
+var BreedInfoService = (function (_super) {
+    __extends(BreedInfoService, _super);
+    function BreedInfoService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.breedUrl = _this.mobileUrl + 'breeds/'; // URL to web API
+        return _this;
+    }
+    BreedInfoService.prototype.getBreed = function (id) {
+        var url = this.breedUrl + id;
+        return this.http.get(url)
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
+    };
+    BreedInfoService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], BreedInfoService);
+    return BreedInfoService;
+}(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
+
+//# sourceMappingURL=breed-info.service.js.map
+
+/***/ }),
+
+/***/ 263:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatInformationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_common_service__ = __webpack_require__(44);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var GoatInformationService = (function (_super) {
+    __extends(GoatInformationService, _super);
+    function GoatInformationService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.goatUrl = _this.mobileUrl + 'goats/'; // URL to web API
+        return _this;
+    }
+    GoatInformationService.prototype.getGoat = function (id) {
+        var url = this.goatUrl + id;
+        return this.http.get(url)
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
+    };
+    GoatInformationService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], GoatInformationService);
+    return GoatInformationService;
+}(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
+
+//# sourceMappingURL=goat-information.service.js.map
+
+/***/ }),
+
+/***/ 264:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_common_service__ = __webpack_require__(44);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var GoatService = (function (_super) {
+    __extends(GoatService, _super);
     function GoatService(http) {
-        this.http = http;
-        this.apiUrl = 'http://localhost:8080/'; //'http://sraullet.freeboxos.fr/';
-        this.goatsUrl = this.apiUrl + 'goats'; // URL to web API
-        this.imgUrl = this.apiUrl + 'image/'; // URL to web API
+        var _this = _super.call(this, http) || this;
+        _this.goatsUrl = _this.mobileUrl + 'goats'; // URL to web API
+        return _this;
     }
     GoatService.prototype.getGoats = function () {
         return this.http.get(this.goatsUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    GoatService.prototype.extractData = function (res) {
-        //console.log("Res = " + res);
-        var body = res.json();
-        //console.log("Body = " + body);
-        console.log("Stringify Body = " + JSON.stringify(body));
-        return body;
-        //return body.data;
-    };
-    GoatService.prototype.handleError = function (error) {
-        // In a real world app, you might use a remote logging infrastructure
-        var errMsg;
-        if (error instanceof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Response */]) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(errMsg);
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
     };
     GoatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], GoatService);
     return GoatService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
 
 //# sourceMappingURL=goat.service.js.map
 
 /***/ }),
 
-/***/ 279:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_goat_goat_page__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_buy_a_goat_buy_a_goat__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_sell_a_goat_sell_a_goat__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_breeds_breeds_page__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_goat_goat_page__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_buy_a_goat_buy_a_goat__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_sell_a_goat_sell_a_goat__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_breeds_breeds_page__ = __webpack_require__(209);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -776,8 +876,7 @@ var MyApp = (function () {
         this.menu = menu;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
-        //rootPage: any = BuyAGoatPage;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_goat_goat_page__["a" /* GoatPage */]; // for tests
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_7__pages_buy_a_goat_buy_a_goat__["a" /* BuyAGoatPage */];
         this.initializeApp();
         // set our app's pages
         this.pages = [
@@ -823,21 +922,30 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_common_service__ = __webpack_require__(44);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -853,65 +961,105 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GoatService = (function () {
+var GoatService = (function (_super) {
+    __extends(GoatService, _super);
     function GoatService(http) {
-        this.http = http;
-        this.apiUrl = 'http://localhost:8080/';
-        this.goatsUrl = this.apiUrl + 'goats'; // URL to web API
-        this.imgUrl = this.apiUrl + 'image/'; // URL to web API
+        var _this = _super.call(this, http) || this;
+        _this.goatsUrl = _this.mobileUrl + 'goats'; // URL to web API
+        return _this;
     }
     GoatService.prototype.getGoats = function () {
         return this.http.get(this.goatsUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    GoatService.prototype.extractData = function (res) {
-        //console.log("Res = " + res);
-        var body = res.json();
-        //console.log("Body = " + body);
-        console.log("Stringify Body = " + JSON.stringify(body));
-        return body;
-        //return body.data;
-    };
-    GoatService.prototype.handleError = function (error) {
-        // In a real world app, you might use a remote logging infrastructure
-        var errMsg;
-        if (error instanceof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Response */]) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(errMsg);
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
     };
     GoatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], GoatService);
     return GoatService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
 
 //# sourceMappingURL=goat.service.js.map
 
 /***/ }),
 
-/***/ 287:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_common_service__ = __webpack_require__(44);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var BreedsService = (function (_super) {
+    __extends(BreedsService, _super);
+    function BreedsService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.breedsUrl = _this.mobileUrl + 'breeds'; // URL to web API
+        return _this;
+    }
+    BreedsService.prototype.getBreeds = function () {
+        return this.http.get(this.breedsUrl)
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
+    };
+    BreedsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], BreedsService);
+    return BreedsService;
+}(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
+
+//# sourceMappingURL=breeds.service.js.map
+
+/***/ }),
+
+/***/ 44:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -928,23 +1076,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var BreedsService = (function () {
-    function BreedsService(http) {
-        this.http = http;
+var CommonService = (function () {
+    function CommonService(http) {
         this.apiUrl = 'http://localhost:8080/';
-        this.breedsUrl = this.apiUrl + 'breeds'; // URL to web API
+        this.mobileUrl = this.apiUrl + 'mobile/';
+        this.http = http;
     }
-    BreedsService.prototype.getBreeds = function () {
-        return this.http.get(this.breedsUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    BreedsService.prototype.extractData = function (res) {
+    CommonService.prototype.extractData = function (res) {
         var body = res.json();
-        console.log("Stringify Body = " + JSON.stringify(body));
+        //console.log("Stringify Body = " + JSON.stringify(body));
         return body;
     };
-    BreedsService.prototype.handleError = function (error) {
+    CommonService.prototype.handleError = function (error) {
         // In a real world app, you might use a remote logging infrastructure
         var errMsg;
         if (error instanceof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Response */]) {
@@ -958,17 +1101,76 @@ var BreedsService = (function () {
         console.error(errMsg);
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(errMsg);
     };
-    BreedsService = __decorate([
+    CommonService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
-    ], BreedsService);
-    return BreedsService;
-    var _a;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], CommonService);
+    return CommonService;
 }());
 
-//# sourceMappingURL=breeds.service.js.map
+//# sourceMappingURL=common.service.js.map
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedInfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breed_info_service__ = __webpack_require__(259);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var BreedInfoPage = (function () {
+    function BreedInfoPage(navCtrl, navParams, alertCtrl, breedInfoService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.breedInfoService = breedInfoService;
+        this.mode = 'Observable';
+        this.apiUrl = this.breedInfoService.apiUrl;
+        this.id = navParams.get('id');
+    }
+    BreedInfoPage.prototype.ngOnInit = function () {
+        console.log("ngOnInit");
+        this.getBreed(this.id);
+    };
+    BreedInfoPage.prototype.getBreed = function (id) {
+        var _this = this;
+        this.breedInfoService.getBreed(id)
+            .subscribe(function (breed) { return _this.breed = breed; }, function (error) { return console.log(error); });
+    };
+    BreedInfoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad BreedInfoPage');
+    };
+    BreedInfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-breed-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breed-info/breed-info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ breed ? breed.name : \'Breed Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding *ngIf="breed">\n\n  <h3 text-center>\n    {{breed.name}}\n  </h3>\n\n  <img text-center width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n  <h4 class="capitalize" text-center>\n    Height: {{ breed.height == 0 ? \'N/A\' : breed.height + \' cm\' }}<br>\n    Weight: {{ breed.weight == 0 ? \'N/A\' : breed.weight + \' kg\'}}<br>\n    Color: {{ breed.color }}<br>\n    Origin: {{ breed.origin }}<br>\n    <div>{{ breed.hair_growth ? \'Hair Growth: \' + breed.hair_growth + \' cm/month\': \'\' }}</div>\n    <div>{{ breed.milk_by_lactation ? \'Milk by Lactation: \' + breed.milk_by_lactation + \' l\' : \'\' }}</div>\n    <div>{{ breed.duration_of_lactation ? \'Duration of Lactation: \' + breed.duration_of_lactation + \' months\' : \'\' }}</div>\n    Exploitation: {{ breed.exploitation }}<br>\n  </h4>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/breed-info/breed-info.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__breed_info_service__["a" /* BreedInfoService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__breed_info_service__["a" /* BreedInfoService */]])
+    ], BreedInfoPage);
+    return BreedInfoPage;
+}());
+
+//# sourceMappingURL=breed-info.js.map
 
 /***/ })
 
-},[209]);
+},[210]);
 //# sourceMappingURL=main.js.map

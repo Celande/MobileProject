@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+import { GoatInformationService } from './goat-information.service';
+import { GoatInterface } from '../buy-a-goat/goat';
+import { BreedInfoPage } from '../breed-info/breed-info';
+
 import { UpdatePage } from '../update/update';
 
 
@@ -9,14 +13,39 @@ import { UpdatePage } from '../update/update';
 @Component({
   selector: 'page-goat-information',
   templateUrl: 'goat-information.html',
+  providers: [GoatInformationService]
 })
 export class GoatInformationPage {
 
-  selectedItem: any;
+  mode = 'Observable';
+  goat: GoatInterface;
+  apiUrl: string = this.goatInformationService.apiUrl;
+  private id: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    private goatInformationService: GoatInformationService)
+    { this.id = navParams.get('id'); }
+
+    ngOnInit() {
+      console.log("ngOnInit");
+      console.log("id = " + this.id);
+      this.getGoat(this.id);
+    }
+
+
+  private getGoat(id: number){
+    this.goatInformationService.getGoat(id)
+                   .subscribe(
+                     goat => this.goat = goat,
+                     error =>  console.log(error));
+  }
+
+  openBreedInfoPage(id: number){
+    console.log("Open BreedInfoPage");
+    this.navCtrl.push(BreedInfoPage, {id: id});
   }
 
   ionViewDidLoad() {
@@ -25,7 +54,7 @@ export class GoatInformationPage {
 
   openUpdatePage(){
   this.navCtrl.push(UpdatePage);
-  
+
   }
 
   showConfirm() {

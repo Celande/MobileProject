@@ -10,8 +10,8 @@
 
 <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let breed of breeds" (click)='itemTapped(event, item)'>
-        <img width="80" src='{{ apiUrl + breed?.img_path }}'> {{breed?.name}}
+      <button ion-item *ngFor="let breed of breeds" (click)='openBreedInfoPage(breed.id)'>
+        <img *ngIf="breed.img_path" width="80" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'> {{breed?.name}}
       </button>
     </ion-list>
  </ion-content>

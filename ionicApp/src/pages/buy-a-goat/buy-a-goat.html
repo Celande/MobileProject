@@ -9,9 +9,8 @@
 
 
 <ion-content padding>
-  <ion-card ion-item *ngFor="let goat of goats" (click)="someFunction()">
-    <ion-img width="80" src='{{ apiUrl + goat?.img_path }}'></ion-img>
-
+  <ion-card *ngFor="let goat of goats" (click)="openGoatInformationPage(goat.id)">
+      <img width="80" src='{{ apiUrl + goat?.img_path }}'>
     <ion-card-content>
       <ion-card-title>
         {{goat?.name}}

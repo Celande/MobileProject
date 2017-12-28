@@ -14,48 +14,53 @@
 <ion-list>
   <ion-item>
     <ion-label color="primary">Name</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-input type="text" [(ngModel)]="goat.name" placeholder="Text Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Price</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-input type="number" placeholder="€" min=0 ></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Gender</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-select [(ngModel)]="goat.gender" interface="popover">
+      <ion-option value="female">Female</ion-option>
+      <ion-option value="male">Male</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Breed</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-select [(ngModel)]="goat.breed_id" interface="popover">
+      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Location</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-input type="text" placeholder="Text Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary" fixed>Identification</ion-label>
-    <ion-input type="number" placeholder="Number Input"></ion-input>
+    <ion-input type="text" type="number" placeholder="Identification"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary" fixed>Birthday</ion-label>
-    <ion-input type="number" placeholder="Number Input"></ion-input>
+    <ion-input type="date" placeholder="Date Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Description</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-textarea placeholder="Description"></ion-textarea>
   </ion-item>
 
 </ion-list>
 
 <button ion-button>Add a IMG</button>
 
-<button ion-button full (click)="update()">Save</button>
+<button ion-button type="submit" full (click)="update()">Sell</button>
 
 </ion-content>
