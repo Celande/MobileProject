@@ -8,47 +8,75 @@
 
 
 <ion-content padding>
-
-<form [formGroup]="goat" (ngSubmit)="updateGoat()" novalidate>
-  <ion-item>
+<div *ngIf="goatForm">
+<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.name.valid && goatForm.controls.name.touched}">
     <ion-label color="primary">Name</ion-label>
     <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.name.hasError('required') && goatForm.controls.name.touched">
+    <p>This field is required!</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.price.valid && goatForm.controls.price.touched}">
     <ion-label color="primary">Price</ion-label>
     <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.price.hasError('required') && goatForm.controls.price.touched">
+    <p>This field is required!</p>
+  </ion-item>
+  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">
+    <p>The price can not be below 0.</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">
     <ion-label color="primary">Gender</ion-label>
     <ion-select formControlName="gender" interface="popover">
       <ion-option value="female">Female</ion-option>
       <ion-option value="male">Male</ion-option>
     </ion-select>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.gender.hasError('required') && goatForm.controls.gender.touched">
+    <p>This field is required!</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">
     <ion-label color="primary">Breed</ion-label>
     <ion-select formControlName="breed_id">
       <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>
       <ion-option [value]=0>Other</ion-option>
     </ion-select>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.breed_id.hasError('required') && goatForm.controls.breed_id.touched">
+    <p>This field is required!</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">
     <ion-label color="primary">Localisation</ion-label>
     <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.localisation.hasError('required') && goatForm.controls.localisation.touched">
+    <p>This field is required!</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">
     <ion-label color="primary" fixed>Identification</ion-label>
     <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>
   </ion-item>
+  <ion-item *ngIf="goatForm.controls.identification.hasError('required') && goatForm.controls.identification.touched">
+    <p>This field is required!</p>
+  </ion-item>
+  <ion-item *ngIf="(goatForm.controls.identification.hasError('pattern') || goatForm.controls.identification.hasError('maxLength')) && goatForm.controls.identification.touched">
+    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>
+    <p>Example: FR 000 000 00000</p>
+  </ion-item>
 
-  <ion-item>
+  <ion-item [ngClass]="{'error-border':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">
     <ion-label color="primary" fixed>Birthdate</ion-label>
     <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="goatForm.controls.birthdate.hasError('required') && goatForm.controls.birthdate.touched">
+    <p>This field is required!</p>
   </ion-item>
 
   <ion-item>
@@ -58,8 +86,8 @@
 
   <button ion-button>Add an Image</button> <br>
 
-  <button ion-button type="submit">Update</button>
+  <button ion-button type="submit" [disabled]="!goatForm.valid">Update</button>
 
 </form>
-
+</div>
 </ion-content>

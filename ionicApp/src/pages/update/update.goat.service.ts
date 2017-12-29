@@ -25,6 +25,7 @@ export class UpdateGoatService extends CommonService {
                   }
 
 update(goat: FormGroup): Observable<any> {
+  console.log("bob 2");
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');

@@ -43,6 +43,13 @@ export class GoatInformationPage {
                      error =>  console.log(error));
   }
 
+  removeGoat(id: number){
+    this.goatInformationService.removeGoat(id)
+                   .subscribe(
+                     goat => console.log("removed"),
+                     error =>  console.log(error));
+  }
+
   openBreedInfoPage(id: number){
     console.log("Open BreedInfoPage");
     this.navCtrl.push(BreedInfoPage, {id: id});
@@ -57,7 +64,7 @@ export class GoatInformationPage {
           this.navCtrl.push(UpdatePage, {id: id});
         }
 
-  showConfirm() {
+  removeConfirm() {
     let confirm = this.alertCtrl.create({
       title: 'Warn!!!',
       message: 'Are you sure to remove?',
@@ -72,6 +79,7 @@ export class GoatInformationPage {
           text: 'Yes',
           handler: () => {
             console.log('Agree clicked');
+            this.removeGoat(this.id);
           }
         }
       ]

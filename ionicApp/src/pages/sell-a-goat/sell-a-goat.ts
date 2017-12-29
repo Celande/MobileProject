@@ -15,7 +15,7 @@ import { BuyAGoatPage } from '../buy-a-goat/buy-a-goat';
 export class SellAGoatPage {
 
   mode = 'Observable';
-  goat: FormGroup;
+  goatForm: FormGroup;
   breeds: BreedInterface[];
   apiUrl: string = this.sellGoatService.apiUrl;
 
@@ -25,7 +25,7 @@ export class SellAGoatPage {
     public alertCtrl: AlertController,
     private sellGoatService: SellGoatService,
     private formBuilder: FormBuilder) {
-      this.goat = this.formBuilder.group({
+      this.goatForm = this.formBuilder.group({
         name: ['', Validators.required],
         price: ['', Validators.required],
         gender: ['', Validators.required],
@@ -33,13 +33,13 @@ export class SellAGoatPage {
         breed_name: [''],
         localisation: ['', Validators.required],
         birthdate: ['', Validators.required],
-        description: ['', Validators.required],
+        description: [''],
         identification: [
           '',
-          [
-            Validators.required,
-            Validators.pattern('/[A-Z]{2,3}\s[0-9]{3}\s[0-9]{3}\s[0-9]{5}/')]
-          ]
+          Validators.compose([Validators.maxLength(17),
+            Validators.pattern('[A-Z]{2,3}\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{5}'),
+             Validators.required])
+           ]
         });
       }
 
@@ -55,11 +55,12 @@ export class SellAGoatPage {
           error =>  console.log(error));
         }
 
-        addGoat(goat: FormGroup) {
-          if (!goat) { return; }
-          this.sellGoatService.create(goat)
+        addGoat() {
+          if (!this.goatForm || !this.goatForm.valid) { return; }
+          this.sellGoatService.create(this.goatForm)
           .subscribe(goat => {
             console.log("success "+goat);
+            this.addAlert();
             this.openBuyAGoatPage();
           }, error => {
             console.error(error);
@@ -67,11 +68,11 @@ export class SellAGoatPage {
         }
 
         saveGoat(){
-          console.log(this.goat.value);
-          if(this.goat.value.breed_id == 0){
+          console.log(this.goatForm.value);
+          if(this.goatForm.value.breed_id == 0){
             this.breedAlert();
           } else {
-            this.addGoat(this.goat);
+            this.addGoat(this.goatForm);
           }
         }
 
@@ -90,9 +91,9 @@ export class SellAGoatPage {
               {
                 text: 'Save',
                 handler: data => {
-                  this.goat.value.breed_name = data.name;
-                  console.log('Breed name = ' + this.goat.value.breed_name);
-                  this.addGoat(this.goat);
+                  this.goatForm.value.breed_name = data.name;
+                  console.log('Breed name = ' + this.goatForm.value.breed_name);
+                  this.addGoat(this.goatForm);
                 }
               }
             ]
@@ -102,8 +103,21 @@ export class SellAGoatPage {
 
         openBuyAGoatPage(){
           console.log("Open BuyAGoatPage");
-          this.navCtrl.push(BuyAGoatPage);
+          //this.navCtrl.push(BuyAGoatPage);
+          this.navCtrl
+      .setRoot(BuyAGoatPage, {id: this.id})
+      .then(()=> {
+        this.navCtrl.popToRoot();
+      });
         }
+
+        addAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Goat added!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
         ionViewDidLoad() {
           console.log('ionViewDidLoad SellAGoatPage');

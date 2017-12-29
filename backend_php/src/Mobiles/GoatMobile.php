@@ -206,37 +206,43 @@ class GoatMobile extends CommonMobile
 
     }
     // POST method
-    else if($request->isPost()) {
+    else if($request->isPost() || $request->isOptions()) {
       //$this-logger->addInfo("Route /goats/update - post");
 
-      // Get the data from the post
-      $data = $request->getParsedBody();
-      // Make the data into an array
+      $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+
+      $id = $request->getAttribute('id');
+      $goat = GoatMobile::getGoatById($request, $response, $id);
+      $data = file_get_contents('php://input');
+      // Create an array to manipulate the data
       $array = array();
-      foreach($data as $key => $value){
-        $array[$key] = $value;
-      }
+      $array = json_decode($data, true);
+
+      $array["id"] = $id;
 
       // Get the breed id from the breed name or add it to the DB
+      // Get the breed id from the breed name or add it to the DB
+      if($array['breed_id'] != 0){
+        $array['breed_name'] = BreedMobile::getBreedById($request, $response, $array['breed_id'])->name;
+      }
+      $string[] = " Breed Name : " . $array["breed_name"] . "\n";
       $breed = BreedMobile::addBreed($request, $response, $array['breed_name']);
 
       // Add the breed to the DB
       if($breed == NULL){
         // If the breed couldn't be added, redirect to the failure page
-        return $response->withRedirect('/failure');
+        $string[] = " Breed failed " . "\n";
+        return $response->withJson($string);
       } else {
         $array['breed_id'] = $breed->id;
-      }
-
-      if($array['breed_id'] == NULL){
-        // If the goat couldn't be added, redirect to the failure page
-        return $response->withRedirect('/failure');
+        $string[] = " Breed id : " . $array["breed_id"] . "\n";
       }
 
       // Update the dates
       $array['updated_at'] = new Datetime();
 
       // Upload image
+      /*
       $uploadedFiles = $request->getUploadedFiles();
       $uploadedFile = $uploadedFiles['image'];
 
@@ -252,17 +258,19 @@ class GoatMobile extends CommonMobile
           $array['img_id'] = $result['id'];
         }
       }
+      */
 
       // If the goat was correctly updated, redirect to success page
+      // If the goat was correctly added, you can redirect
+      $string[] = " Before trying to store ";
       if($this->update($array)){
-        return $response->withRedirect('/goats/'.$array['id']);
+        $array[] = " Updated " . "\n";
+        return $response->withJson($array);
       }
-      // If the goat couldn't be updated, redirect failure
-      return $response->withRedirect('/failure');
-    }
-    // ERROR in method
-    else{
-      return parent::notAllowed($request, $response, $args);
+      // If the goat couldn't be added, redirect to the failure page
+      $array[] = " Not Updated " . "\n";
+      //return $response->withRedirect('/failure');
+      return $response->withJson($array);
     }
   }
 
@@ -394,10 +402,11 @@ class GoatMobile extends CommonMobile
     // Get the goat according to its id
     $goat = GoatMobile::getGoatById($request, $response, intval($array['id']));
     if($goat == NULL){
+      echo " No Goat ";
       return false;
     }
 
-    $imgToRemove = $goat->img_id;
+    //$imgToRemove = $goat->img_id;
     // Replace the data
     $goat->name = $array['name'];
     $goat->price = $array['price'];
@@ -411,12 +420,15 @@ class GoatMobile extends CommonMobile
     // Goat was updated
     if($goat->save()){
       // Delete old image
+      /*
       if($imgToRemove != $goat->img_id){
         ImageMobile::removeImage($imgToRemove);
       }
+      */
 
       return true;
     }
+    echo " No Goat Not Updated";
     // Any problem
     return FALSE;
   }

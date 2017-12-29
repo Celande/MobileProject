@@ -18,10 +18,10 @@ $this->group('/goats', function(){
   // POST: Add the goat to the DB if its identification isn't already in
   $this->map(['OPTIONS', 'POST'], '/add', 'App\Mobiles\GoatMobile:addGoat');
   // Remove a goat from the DB
-  $this->post('/remove', 'App\Mobiles\GoatMobile:removeGoat');
+  $this->get('/remove/{id}', 'App\Mobiles\GoatMobile:removeGoat');
   // GET: Get access to the form to modify data on a goat
   // POST: Replace updated goat in the DB
-  $this->map(['GET', 'POST'], '/update/{id}', 'App\Mobiles\GoatMobile:updateGoat');
+  $this->map(['GET', 'POST', 'OPTIONS'], '/update/{id}', 'App\Mobiles\GoatMobile:updateGoat');
   // TODO : Search
   $this->post('/search', 'App\Mobiles\GoatMobile:searchGoat');
   // Get info on one goat

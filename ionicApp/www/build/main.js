@@ -9,7 +9,8 @@ webpackJsonp([5],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__update_goat_service__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__goat_information_goat_information__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__buy_a_goat_buy_a_goat__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__goat_information_goat_information__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,18 +25,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+// https://www.gajotres.net/ionic-2-how-o-create-and-validate-forms/2/
 var UpdatePage = (function () {
-    function UpdatePage(navCtrl, navParams, alertCtrl, updateGoatService, formBuilder) {
+    function UpdatePage(navCtrl, navParams, alertCtrl, viewCtrl, updateGoatService, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
+        this.viewCtrl = viewCtrl;
         this.updateGoatService = updateGoatService;
         this.formBuilder = formBuilder;
         this.mode = 'Observable';
         this.apiUrl = this.updateGoatService.apiUrl;
         this.breedName = null;
         this.id = navParams.get('id');
-        this.updateFormBuilder();
+        //this.updateFormBuilder();
     }
     UpdatePage.prototype.ngOnInit = function () {
         console.log("ngOnInit");
@@ -51,6 +55,7 @@ var UpdatePage = (function () {
         if (this.goat) {
             this.goatForm = this.formBuilder.group({
                 id: [this.goat.id],
+                img_id: [this.goat.img_id],
                 name: [this.goat.name, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
                 price: [this.goat.price, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
                 gender: [this.goat.gender, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
@@ -58,15 +63,15 @@ var UpdatePage = (function () {
                 breed_name: [''],
                 localisation: [this.goat.localisation, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
                 birthdate: [this.goat.birthdate, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-                description: [this.goat.description, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+                description: [this.goat.description],
                 identification: [
                     this.goat.identification,
-                    [
-                        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required,
-                        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('/[A-Z]{2,3}\s[0-9]{3}\s[0-9]{3}\s[0-9]{5}/')
-                    ]
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(17),
+                        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[A-Z]{2,3}\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{5}'),
+                        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])
                 ]
             });
+            console.log("goatForm = " + this.goatForm.value);
         }
         else {
             this.goatForm = this.formBuilder.group({});
@@ -74,6 +79,7 @@ var UpdatePage = (function () {
     };
     UpdatePage.prototype.showGoat = function (id) {
         var _this = this;
+        console.log("id = " + this.id);
         this.updateGoatService.show(id)
             .subscribe(function (goat) {
             console.log("success");
@@ -83,12 +89,15 @@ var UpdatePage = (function () {
             console.error(error);
         });
     };
-    UpdatePage.prototype.updateGoat = function (goatForm) {
+    UpdatePage.prototype.updateGoat = function () {
         var _this = this;
-        if (!goatForm) {
+        console.log("bob 1");
+        if (!this.goatForm || !this.goatForm.valid) {
+            console.log("Invalid Form");
             return;
         }
-        this.updateGoatService.update(goatForm)
+        console.log("bob 2");
+        this.updateGoatService.update(this.goatForm)
             .subscribe(function (goat) {
             console.log("success " + goat);
             _this.updateAlert();
@@ -132,8 +141,25 @@ var UpdatePage = (function () {
         alert.present();
     };
     UpdatePage.prototype.openGoatInformationPage = function () {
+        var _this = this;
         console.log("Open GoatInformationPage");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__goat_information_goat_information__["a" /* GoatInformationPage */], { id: this.id });
+        //this.navCtrl.push(GoatInformationPage, {id: this.id});
+        /*
+        this.navCtrl
+    .push(GoatInformationPage, {id: this.id})
+    .then(() => {
+      // first we find the index of the current view controller:
+      const index = this.viewCtrl.index;
+      // then we remove it from the navigation stack
+      this.navCtrl.remove(index);
+    });
+    */
+        this.navCtrl
+            .setRoot(__WEBPACK_IMPORTED_MODULE_4__buy_a_goat_buy_a_goat__["a" /* BuyAGoatPage */], { id: this.id })
+            .then(function () {
+            _this.navCtrl.popToRoot();
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__goat_information_goat_information__["a" /* GoatInformationPage */], { id: _this.id });
+        });
     };
     UpdatePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad UpdatePage');
@@ -149,13 +175,13 @@ var UpdatePage = (function () {
     };
     UpdatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/update/update.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n<form [formGroup]="goat" (ngSubmit)="updateGoat()" novalidate>\n  <ion-item>\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button ion-button>Add an Image</button> <br>\n\n  <button ion-button type="submit">Update</button>\n\n</form>\n\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/update/update.html"*/,
+            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/update/update.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<div *ngIf="goatForm">\n<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n    <p>The price can not be below 0.</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n    <p>Example: FR 000 000 00000</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button ion-button>Add an Image</button> <br>\n\n  <button ion-button type="submit" [disabled]="!goatForm.valid">Update</button>\n\n</form>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/update/update.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object])
     ], UpdatePage);
     return UpdatePage;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=update.js.map
@@ -195,7 +221,7 @@ var SellAGoatPage = (function () {
         this.formBuilder = formBuilder;
         this.mode = 'Observable';
         this.apiUrl = this.sellGoatService.apiUrl;
-        this.goat = this.formBuilder.group({
+        this.goatForm = this.formBuilder.group({
             name: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
             price: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
             gender: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
@@ -203,13 +229,12 @@ var SellAGoatPage = (function () {
             breed_name: [''],
             localisation: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
             birthdate: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            description: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            description: [''],
             identification: [
                 '',
-                [
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required,
-                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('/[A-Z]{2,3}\s[0-9]{3}\s[0-9]{3}\s[0-9]{5}/')
-                ]
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(17),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[A-Z]{2,3}\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{5}'),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])
             ]
         });
     }
@@ -222,26 +247,27 @@ var SellAGoatPage = (function () {
         this.sellGoatService.getBreeds()
             .subscribe(function (breeds) { return _this.breeds = breeds; }, function (error) { return console.log(error); });
     };
-    SellAGoatPage.prototype.addGoat = function (goat) {
+    SellAGoatPage.prototype.addGoat = function () {
         var _this = this;
-        if (!goat) {
+        if (!this.goatForm || !this.goatForm.valid) {
             return;
         }
-        this.sellGoatService.create(goat)
+        this.sellGoatService.create(this.goatForm)
             .subscribe(function (goat) {
             console.log("success " + goat);
+            _this.addAlert();
             _this.openBuyAGoatPage();
         }, function (error) {
             console.error(error);
         });
     };
     SellAGoatPage.prototype.saveGoat = function () {
-        console.log(this.goat.value);
-        if (this.goat.value.breed_id == 0) {
+        console.log(this.goatForm.value);
+        if (this.goatForm.value.breed_id == 0) {
             this.breedAlert();
         }
         else {
-            this.addGoat(this.goat);
+            this.addGoat(this.goatForm);
         }
     };
     SellAGoatPage.prototype.breedAlert = function () {
@@ -260,9 +286,9 @@ var SellAGoatPage = (function () {
                 {
                     text: 'Save',
                     handler: function (data) {
-                        _this.goat.value.breed_name = data.name;
-                        console.log('Breed name = ' + _this.goat.value.breed_name);
-                        _this.addGoat(_this.goat);
+                        _this.goatForm.value.breed_name = data.name;
+                        console.log('Breed name = ' + _this.goatForm.value.breed_name);
+                        _this.addGoat(_this.goatForm);
                     }
                 }
             ]
@@ -270,15 +296,28 @@ var SellAGoatPage = (function () {
         alert.present();
     };
     SellAGoatPage.prototype.openBuyAGoatPage = function () {
+        var _this = this;
         console.log("Open BuyAGoatPage");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__buy_a_goat_buy_a_goat__["a" /* BuyAGoatPage */]);
+        //this.navCtrl.push(BuyAGoatPage);
+        this.navCtrl
+            .setRoot(__WEBPACK_IMPORTED_MODULE_4__buy_a_goat_buy_a_goat__["a" /* BuyAGoatPage */], { id: this.id })
+            .then(function () {
+            _this.navCtrl.popToRoot();
+        });
+    };
+    SellAGoatPage.prototype.addAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Goat added!',
+            buttons: ['OK']
+        });
+        alert.present();
     };
     SellAGoatPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SellAGoatPage');
     };
     SellAGoatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sell-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<form [formGroup]="goat" (ngSubmit)="saveGoat()" novalidate>\n\n  <ion-item>\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button>Add an Image</button> <br>\n\n\n\n  <button ion-button type="submit">Sell</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/,
+            selector: 'page-sell-a-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n\n    <p>The price can not be below 0.</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n\n    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n\n    <p>Example: FR 000 000 00000</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button>Add an Image</button> <br>\n\n\n\n  <button ion-button type="submit" [disabled]="!goatForm.valid">Update</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/sell-a-goat/sell-a-goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__sell_goat_service__["a" /* SellGoatService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__sell_goat_service__["a" /* SellGoatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__sell_goat_service__["a" /* SellGoatService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _e || Object])
@@ -794,6 +833,7 @@ var GoatInformationService = (function (_super) {
     function GoatInformationService(http) {
         var _this = _super.call(this, http) || this;
         _this.goatUrl = _this.mobileUrl + 'goats/'; // URL to web API
+        _this.removeGoatUrl = _this.mobileUrl + 'remove/';
         return _this;
     }
     GoatInformationService.prototype.getGoat = function (id) {
@@ -802,11 +842,18 @@ var GoatInformationService = (function (_super) {
             .map(_super.prototype.extractData)
             .catch(_super.prototype.handleError);
     };
+    GoatInformationService.prototype.removeGoat = function (id) {
+        var url = this.removeGoatUrl + id;
+        return this.http.get(url)
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
+    };
     GoatInformationService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], GoatInformationService);
     return GoatInformationService;
+    var _a;
 }(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
 
 //# sourceMappingURL=goat-information.service.js.map
@@ -867,6 +914,7 @@ var UpdateGoatService = (function (_super) {
             .catch(_super.prototype.handleError);
     };
     UpdateGoatService.prototype.update = function (goat) {
+        console.log("bob 2");
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
@@ -888,9 +936,10 @@ var UpdateGoatService = (function (_super) {
     };
     UpdateGoatService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], UpdateGoatService);
     return UpdateGoatService;
+    var _a;
 }(__WEBPACK_IMPORTED_MODULE_5__common_common_service__["a" /* CommonService */]));
 
 //# sourceMappingURL=update.goat.service.js.map
@@ -1485,6 +1534,10 @@ var GoatInformationPage = (function () {
         this.goatInformationService.getGoat(id)
             .subscribe(function (goat) { return _this.goat = goat; }, function (error) { return console.log(error); });
     };
+    GoatInformationPage.prototype.removeGoat = function (id) {
+        this.goatInformationService.removeGoat(id)
+            .subscribe(function (goat) { return console.log("removed"); }, function (error) { return console.log(error); });
+    };
     GoatInformationPage.prototype.openBreedInfoPage = function (id) {
         console.log("Open BreedInfoPage");
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info__["a" /* BreedInfoPage */], { id: id });
@@ -1496,7 +1549,8 @@ var GoatInformationPage = (function () {
         console.log("Open UpdatePage");
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__update_update__["a" /* UpdatePage */], { id: id });
     };
-    GoatInformationPage.prototype.showConfirm = function () {
+    GoatInformationPage.prototype.removeConfirm = function () {
+        var _this = this;
         var confirm = this.alertCtrl.create({
             title: 'Warn!!!',
             message: 'Are you sure to remove?',
@@ -1511,6 +1565,7 @@ var GoatInformationPage = (function () {
                     text: 'Yes',
                     handler: function () {
                         console.log('Agree clicked');
+                        _this.removeGoat(_this.id);
                     }
                 }
             ]
@@ -1519,15 +1574,13 @@ var GoatInformationPage = (function () {
     };
     GoatInformationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding *ngIf="goat">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoPage(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full (click)="openUpdatePage(goat.id)">Update</button>\n    <button ion-button full (click)="showConfirm()">Remove</button>\n  </p>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/,
+            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding *ngIf="goat">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoPage(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full (click)="openUpdatePage(goat.id)">Update</button>\n    <button ion-button full (click)="removeConfirm()">Remove</button>\n  </p>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/pages/goat-information/goat-information.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__goat_information_service__["a" /* GoatInformationService */]) === "function" && _d || Object])
     ], GoatInformationPage);
     return GoatInformationPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=goat-information.js.map
