@@ -3,22 +3,17 @@ import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { GoatPage } from '../pages/goat/goat.page';
-
-import { BuyAGoatPage } from '../pages/buy-a-goat/buy-a-goat';
-import { SellAGoatPage } from '../pages/sell-a-goat/sell-a-goat';
-import { BreedsPage } from '../pages/breeds/breeds.page';
+import { GoatsViewModel } from '../viewmodel/goats/goats.viewmodel';
+import { AddGoatViewModel } from '../viewmodel/add_goat/add.goat.viewmodel';
+import { BreedsViewModel } from '../viewmodel/breeds/breeds.viewmodel';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: './app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: any = BuyAGoatPage;
-  rootPage: any = BuyAGoatPage; // for tests
+  rootPage: any = GoatsViewModel;
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,12 +27,9 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Goat', component: GoatPage },
-      { title: 'Buy A Goat', component: BuyAGoatPage },
-      { title: 'Sell A Goat', component: SellAGoatPage },
-      { title: 'Breeds', component: BreedsPage }
+      { title: 'Buy A Goat', component: GoatsViewModel },
+      { title: 'Sell A Goat', component: AddGoatViewModel },
+      { title: 'Breeds', component: BreedsViewModel }
     ];
 
   }

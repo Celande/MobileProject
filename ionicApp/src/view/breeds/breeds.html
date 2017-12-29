@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Breeds</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let breed of breeds" (click)='openBreedInfoViewModel(breed.id)'>
+        <img *ngIf="breed.img_path" width="80" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'> {{breed?.name}}
+      </button>
+    </ion-list>
+ </ion-content>

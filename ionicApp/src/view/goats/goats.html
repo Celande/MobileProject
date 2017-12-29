@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Buy A Goat</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let goat of goats" (click)="openGoatInfoViewModel(goat.id)">
+      <img width="80" src='{{ apiUrl + goat?.img_path }}'>
+    <ion-card-content>
+      <ion-card-title>
+        {{goat?.name}}
+      </ion-card-title>
+      <p class="capitalize">
+        €{{goat?.price}}<br>
+        {{goat?.gender}}<br>
+        {{goat?.breed_name}}<br>
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="default" icon-start>
+          <ion-icon name='arrow-forward'></ion-icon>
+          Tap to read more
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>

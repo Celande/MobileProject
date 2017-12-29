@@ -5,17 +5,12 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { GoatPage } from '../pages/goat/goat.page';
-import { Goat } from '../pages/goat/goat';
-
-import { BuyAGoatPage } from '../pages/buy-a-goat/buy-a-goat';
-import { GoatInformationPage } from '../pages/goat-information/goat-information';
-import { SellAGoatPage } from '../pages/sell-a-goat/sell-a-goat';
-import { BreedsPage } from '../pages/breeds/breeds.page';
-import { UpdatePage } from '../pages/update/update';
-import { BreedInfoPage } from '../pages/breed-info/breed-info';
+import { GoatsViewModel } from '../viewmodel/goats/goats.viewmodel';
+import { GoatInfoViewModel } from '../viewmodel/goat_info/goat.info.viewmodel';
+import { AddGoatViewModel } from '../viewmodel/add_goat/add.goat.viewmodel';
+import { BreedsViewModel } from '../viewmodel/breeds/breeds.viewmodel';
+import { UpdateGoatViewModel } from '../viewmodel/update_goat/update.goat.viewmodel';
+import { BreedInfoViewModel } from '../viewmodel/breed_info/breed.info.viewmodel';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,15 +18,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage,
-    GoatPage,
-    BuyAGoatPage,
-    GoatInformationPage,
-    SellAGoatPage,
-    BreedsPage,
-    UpdatePage,
-    BreedInfoPage
+    GoatsViewModel,
+    GoatInfoViewModel,
+    AddGoatViewModel,
+    BreedsViewModel,
+    UpdateGoatViewModel,
+    BreedInfoViewModel
   ],
   imports: [
     BrowserModule,
@@ -43,15 +35,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage,
-    GoatPage,
-    BuyAGoatPage,
-    GoatInformationPage,
-    SellAGoatPage,
-    BreedsPage,
-    UpdatePage,
-    BreedInfoPage
+    GoatsViewModel,
+    GoatInfoViewModel,
+    AddGoatViewModel,
+    BreedsViewModel,
+    UpdateGoatViewModel,
+    BreedInfoViewModel
   ],
   providers: [
     StatusBar,

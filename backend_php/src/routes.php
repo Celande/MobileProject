@@ -22,54 +22,8 @@ $this->group('/goats', function(){
   // GET: Get access to the form to modify data on a goat
   // POST: Replace updated goat in the DB
   $this->map(['GET', 'POST', 'OPTIONS'], '/update/{id}', 'App\Mobiles\GoatMobile:updateGoat');
-  // TODO : Search
-  $this->post('/search', 'App\Mobiles\GoatMobile:searchGoat');
   // Get info on one goat
   $this->get('/{id}', 'App\Mobiles\GoatMobile:showGoat');
 });
 $this->get('/image/{id}', 'App\Mobiles\ImageMobile:getImageJsonById');
 });
-
-// Success returned if goat successfully added/updated/removed
-// Return to the goat list after a littke delay
-$app->get('/success', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /success");
-  $this->view->render($response, 'success.twig');
-});
-// Failure returned if goat successfully added/updated/removed
-// Return to the goat list after a littke delay
-$app->get('/failure', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /failure");
-  $this->view->render($response, 'failure.twig');
-});
-
-// Home page
-$app->get('/home', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /home");
-  return $response->withRedirect('/goats');
-});
-
-// 404 not found page
-$app->get('/404', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /404");
-  $notFoundHandler = $this->notFoundHandler;
-  return $notFoundHandler($request, $response);
-});
-
-/*
-// 405 allowed page
-$app->get('/405', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /405");
-  $notAllowedHandler = $this->notAllowedHandler;
-  $methods = array();
-  return $notAllowedHandler($request, $response, $methods);
-});
-*/
-
-/*
-// Home page
-$app->get('/', function (Request $request, Response $response) {
-  //$this->logger->addInfo("Route /");
-  return $response->withRedirect('/goats');
-});
-*/
