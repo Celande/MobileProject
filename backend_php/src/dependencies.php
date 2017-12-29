@@ -108,20 +108,3 @@ $container[App\Mobiles\ImageMobile::class] = function ($c) {
   $imgDir = 'img/';
   return new App\Mobiles\ImageMobile($view, $logger, $table, $imgDir);
 };
-
-//Override the default Not Found Handler
-/* http://help.slimframework.com/discussions/problems/10851-how-to-add-404-template-in-slim-3 */
-$container['notFoundHandler'] = function ($c) {
-  return new NotFoundHandler($c->get('view'), function ($request, $response) use ($c) {
-        return $c['response']
-            ->withStatus(404);
-    });
-};
-
-//Override the default Not Allowed Handler
-$container['notAllowedHandler'] = function ($c) {
-    return new NotAllowedHandler($c->get('view'), function ($request, $response) use ($c) {
-        return $c['response']
-            ->withStatus(405);
-    });
-};
