@@ -52,10 +52,10 @@ export class GoatInformationPage {
     console.log('ionViewDidLoad GoatInformationPage');
   }
 
-  openUpdatePage(){
-  this.navCtrl.push(UpdatePage);
-
-  }
+  openUpdatePage(id: number){
+          console.log("Open UpdatePage");
+          this.navCtrl.push(UpdatePage, {id: id});
+        }
 
   showConfirm() {
     let confirm = this.alertCtrl.create({

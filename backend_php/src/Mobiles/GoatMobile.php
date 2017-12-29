@@ -22,6 +22,8 @@ class GoatMobile extends CommonMobile
 {
   /*** ***** Route method ***** ***/
 
+  private $string = array();
+
   /** showGoats
   * List all the goats in the DB
   * @param Request $request
@@ -80,40 +82,47 @@ class GoatMobile extends CommonMobile
   * @return $view
   **/
   public function addGoat(Request $request, Response $response, $args){
-    if($request->isPost()) {
       //$this-logger->addInfo("Route /goats/add - post");
 
-      // Get the posted data
-      $data = $request->getParsedBody();
+      $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+
+      $data = file_get_contents('php://input');
       // Create an array to manipulate the data
       $array = array();
-      /*
-      foreach($data as $key => $value){
-        $array[$key] = $value;
-      }
-      */
       $array = json_decode($data, true);
 
+      //$string[] = " Phase 1 : " . $array . "\n";
+
       // Get the breed id from the breed name or add it to the DB
+      if($array['breed_id'] != 0){
+        $array['breed_name'] = BreedMobile::getBreedById($request, $response, $array['breed_id'])->name;
+      }
+      $string[] = " Breed Name : " . $array["breed_name"] . "\n";
       $breed = BreedMobile::addBreed($request, $response, $array['breed_name']);
 
       // Add the breed to the DB
       if($breed == NULL){
         // If the breed couldn't be added, redirect to the failure page
-        return $response->withRedirect('/failure');
+        $string[] = " Breed failed " . "\n";
+        return $response->withJson($string);
       } else {
         $array['breed_id'] = $breed->id;
+        $string[] = " Breed id : " . $array["breed_id"] . "\n";
       }
 
       // Update the dates
       $array['created_at'] = new Datetime();
       $array['updated_at'] = new Datetime();
 
+      $string[] = " Date " . "\n";
+
       // Add Image
       // Default image
       $array['img_id'] = ImageMobile::getDefaultImage()->id;
 
-      // Upload image
+      $string[] = " Image id : " . $array["img_id"] . "\n";
+
+      /* Upload image
       $uploadedFiles = $request->getUploadedFiles();
       $uploadedFile = $uploadedFiles['image'];
 
@@ -129,18 +138,19 @@ class GoatMobile extends CommonMobile
           $array['img_id'] = $result['id'];
         }
       }
+      */
 
       // If the goat was correctly added, you can redirect
+      $string[] = " Before trying to store ";
       if($this->store($array)){
-        return $response->withRedirect('/home');
+        $array[] = " Stored " . "\n";
+        return $response->withJson($array);
       }
       // If the goat couldn't be added, redirect to the failure page
-      return $response->withRedirect('/failure');
-    }
-    // ERROR in method
-    else{
-      return parent::notAllowed($request, $response, $args);
-    }
+      $array[] = " Not Stored " . "\n";
+      //return $response->withRedirect('/failure');
+      return $response->withJson($array);
+
   }
 
   /** removeGoat
@@ -183,19 +193,16 @@ class GoatMobile extends CommonMobile
       //$this-logger->addInfo("Route /goats/update - get");
 
       // Get the goat according to the id
-      $id = $request->getQueryParams()['id'];
-      $goat = GoatMobile::getGoatById($request, $response, intval($id));
-      // Get the breed according to the id
-      $breed = BreedMobile::getBreedById($request, $response, $goat->breed_id);
-      // Get the image according to the id
-      $img = ImageMobile::getImageById($request, $response, $goat->img_id);
-      // Return the form
-      return $this->view->render($response, 'update_goat.twig',
-      array(
-        'goat' => $goat,
-        'breed_name' => $breed->name,
-        'img' => $img
-      ));
+      //$id = $request->getQueryParams()['id'];
+
+      $id = $request->getAttribute('id');
+    $goat = GoatMobile::getGoatById($request, $response, $id);
+    $goat->age = $this->getAge($goat->birthdate);
+    $goat->img_path = ImageMobile::getImageById($request, $response, $goat->img_id);
+    $goat->breed_name = BreedMobile::getBreedById($request, $response, $goat->breed_id)->name;
+
+    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+    return $response->withJson($goat);
 
     }
     // POST method
@@ -317,7 +324,6 @@ class GoatMobile extends CommonMobile
   {
     // Remove breed_name from the array
     unset($array['breed_name']);
-
     // Check array
     if($array == NULL
     || $array['name'] == NULL
@@ -327,18 +333,26 @@ class GoatMobile extends CommonMobile
     || $array['gender'] == NULL
     || $array['localisation'] == NULL
     || $array['identification'] == NULL){
+      echo " Store Empty field ";
       return false;
     }
 
     // Check if the goat is already in the DB
     // count must be equal to 0
+    $string[] = "Before Identification";
     if(Goat::where('identification', 'like', $array['identification'])->get()->count() == 0){
       // No problem in the creation
       if(Goat::create($array)){
         return TRUE;
       }
+      echo " No Create ";
+      return;
+    } else {
+      echo " No identification ";
+      return;
     }
     // Any problem
+    echo " Store False ";
     return FALSE;
   }
 

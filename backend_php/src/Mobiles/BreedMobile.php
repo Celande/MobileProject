@@ -77,11 +77,13 @@ class BreedMobile extends CommonMobile
   * @return Breed
   **/
   public function getBreedByName(Request $request, Response $response, $name){
+$breed = NULL;
+    if($name == "" || $name == null){
+      return $breed;
+    }
     $breed = Breed::where('name', 'like', $name)
                   ->first();
-    if(!$breed){
-      //return parent::notFound($request, $response, $name);
-    }
+
     return $breed;
   }
 
@@ -91,7 +93,7 @@ class BreedMobile extends CommonMobile
   * @return int or NULL
   **/
   public function addBreed(Request $request, Response $response, $name){
-    $name = ucfirst($name);
+    $name = ucfirst(strtolower($name));
     $existingBreed = BreedMobile::getBreedByName($request, $response, $name);
     if($existingBreed == NULL){
       $breed = new Breed;
@@ -102,7 +104,7 @@ class BreedMobile extends CommonMobile
       $breed->origin = "N/A";
 
       if($breed->save()){
-        return $breed->id;
+        return $breed;
       }
 
       return NULL;

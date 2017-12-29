@@ -9,52 +9,57 @@
 
 <ion-content padding>
 
-<ion-list>
+<form [formGroup]="goat" (ngSubmit)="updateGoat()" novalidate>
   <ion-item>
     <ion-label color="primary">Name</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Price</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Gender</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-select formControlName="gender" interface="popover">
+      <ion-option value="female">Female</ion-option>
+      <ion-option value="male">Male</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Breed</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-select formControlName="breed_id">
+      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>
+      <ion-option [value]=0>Other</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label color="primary">Location</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-label color="primary">Localisation</ion-label>
+    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary" fixed>Identification</ion-label>
-    <ion-input type="number" placeholder="Number Input"></ion-input>
+    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label color="primary" fixed>Birthday</ion-label>
-    <ion-input type="number" placeholder="Number Input"></ion-input>
+    <ion-label color="primary" fixed>Birthdate</ion-label>
+    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Description</ion-label>
-    <ion-input placeholder="Text Input"></ion-input>
+    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
   </ion-item>
 
-</ion-list>
+  <button ion-button>Add an Image</button> <br>
 
-<img src="assets/img/goat.png"/>
-<button ion-button>upload new IMG</button>
+  <button ion-button type="submit">Update</button>
 
-<button ion-button full (click)="update()">Update</button>
+</form>
 
 </ion-content>

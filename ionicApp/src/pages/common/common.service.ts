@@ -14,9 +14,10 @@ export class CommonService {
   public constructor (http: Http) { this.http = http; }
 
   protected extractData(res: Response) {
-    let body = res.json();
-    //console.log("Stringify Body = " + JSON.stringify(body));
-    return body;
+    //let body = res.json();
+    //console.log("Stringify Res = " + JSON.stringify(res));
+    //console.log("Stringify Res Json = " + JSON.stringify(res.json()));
+    return res.json();
   }
 
   protected handleError (error: Response | any) {

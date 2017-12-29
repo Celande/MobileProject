@@ -19,14 +19,14 @@
     Breed: <a (click)="openBreedInfoPage(goat.breed_id)">{{ goat.breed_name }}</a><br>
     Age: {{ goat.age }}<br>
     Location: {{ goat.localisation }}<br>
-    Birthdate: {{ goat.birthdate }}<br>
+    Birthdate: {{ goat.birthdate | date }}<br>
   </h4>
   <h4 text-center>
     Identification: {{ goat.identification }}<br>
     Description: {{ goat.descrption }}
   </h4>
   <p>
-    <button ion-button full (click)="openUpdatePage()">Update</button>
+    <button ion-button full (click)="openUpdatePage(goat.id)">Update</button>
     <button ion-button full (click)="showConfirm()">Remove</button>
   </p>
 </ion-content>

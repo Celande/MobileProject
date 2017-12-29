@@ -4,11 +4,12 @@ export interface GoatInterface {
     id: number,
     name: string,
     price: number,
-    date: any,
+    birthdate: any,
     breed_id: number,
     gender: string,
     localisation: string,
     description?: string,
+    identification: string,
     img_id: number,
     img_path: string
 }
