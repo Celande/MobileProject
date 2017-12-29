@@ -833,7 +833,7 @@ var GoatInformationService = (function (_super) {
     function GoatInformationService(http) {
         var _this = _super.call(this, http) || this;
         _this.goatUrl = _this.mobileUrl + 'goats/'; // URL to web API
-        _this.removeGoatUrl = _this.mobileUrl + 'remove/';
+        _this.removeGoatUrl = _this.goatUrl + 'remove/';
         return _this;
     }
     GoatInformationService.prototype.getGoat = function (id) {
@@ -1535,8 +1535,13 @@ var GoatInformationPage = (function () {
             .subscribe(function (goat) { return _this.goat = goat; }, function (error) { return console.log(error); });
     };
     GoatInformationPage.prototype.removeGoat = function (id) {
+        var _this = this;
         this.goatInformationService.removeGoat(id)
-            .subscribe(function (goat) { return console.log("removed"); }, function (error) { return console.log(error); });
+            .subscribe(function (data) {
+            console.log("removed");
+            _this.removeAlert();
+            _this.openBuyAGoatPage();
+        }, function (error) { return console.log(error); });
     };
     GoatInformationPage.prototype.openBreedInfoPage = function (id) {
         console.log("Open BreedInfoPage");
@@ -1571,6 +1576,22 @@ var GoatInformationPage = (function () {
             ]
         });
         confirm.present();
+    };
+    GoatInformationPage.prototype.removeAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Goat removed!',
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    GoatInformationPage.prototype.openBuyAGoatPage = function () {
+        var _this = this;
+        console.log("Open UpdatePage");
+        this.navCtrl
+            .setRoot(BuyAGoatPage, { id: this.id })
+            .then(function () {
+            _this.navCtrl.popToRoot();
+        });
     };
     GoatInformationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

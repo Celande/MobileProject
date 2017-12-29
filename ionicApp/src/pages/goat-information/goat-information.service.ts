@@ -10,7 +10,7 @@ import { CommonService } from '../common/common.service';
 @Injectable()
 export class GoatInformationService extends CommonService {
   private goatUrl: string = this.mobileUrl + 'goats/';  // URL to web API
-  private removeGoatUrl: string = this.mobileUrl + 'remove/';
+  private removeGoatUrl: string = this.goatUrl + 'remove/';
 
   constructor (http: Http) { super(http); }
 

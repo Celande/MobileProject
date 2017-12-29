@@ -163,19 +163,15 @@ class GoatMobile extends CommonMobile
   public function removeGoat(Request $request, Response $response, $args){
     //$this-logger->addInfo("Route /goats/remove");
 
-    // Get data from the post method
-    $data = $request->getParsedBody();
-    // Make data into array
-    $array = array();
-    foreach($data as $key => $value){
-      $array[$key] = $value;
-    }
+    $id = $request->getAttribute('id');
+
+    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
     // The goat was correctly deleted, redirect to success page
-    if($this->delete(intval($array['id']))){
-      return $response->withRedirect('/home');
+    if($this->delete(intval($id))){
+      return $response->withJson("OK");
     }
     // The goat couldn't be deleted, redirect to failure page
-    return $response->withRedirect('/failure');
+    return $response->withJson("FAILURE");
   }
 
   /** updateGoat
@@ -274,53 +270,6 @@ class GoatMobile extends CommonMobile
     }
   }
 
-  /** searchGoat
-  * Search for a goat
-  * POST: Use the form to retrieve the goats
-  * @param Request $request
-  * @param Response $response
-  * @param $args
-  * @return $view
-  **/
-  public function searchGoat(Request $request, Response $response, $args){
-    // POST method
-    if($request->isPost()) {
-      //$this-logger->addInfo("Route /goats/search - post");
-
-      // Get the posted data
-      $data = $request->getParsedBody();
-      // Create an array to manipulate the data
-      $array = array();
-      foreach($data as $key => $value){
-        $array[$key] = $value;
-      }
-
-      $goats = $this->getSearchGoat($request, $response, $array);
-
-      // Get breeds
-      $breeds = BreedMobile::getAllBreeds();
-      // Get images
-      $imgs = ImageMobile::getGoatImages($request, $response);
-      // Get ages
-      $ages = array();
-      foreach($goats as $goat){
-        $ages[$goat->id] = $this->getAge($goat->birthdate);
-      }
-
-      return $this->view->render($response, 'home.twig',
-      array(
-        'goats' => $goats,
-        'breeds' => $breeds,
-        'imgs' => $imgs,
-        'ages' => $ages
-      ));
-    }
-    // ERROR in method
-    else{
-      return parent::notAllowed($request, $response, $args);
-    }
-  }
-
   /*** ***** Other method ***** ***/
 
   /** store
@@ -375,15 +324,16 @@ class GoatMobile extends CommonMobile
     if($goat == NULL){
       return false;
     }
-
+    /*
     $imgId = $goat->img_id;
     if($imgId == NULL){
       return false;
     }
+    */
     // Delete the goat
     if($goat->delete()){
       // Delete the image
-      ImageMobile::removeImage($imgId);
+      //ImageMobile::removeImage($imgId);
       return TRUE;
     }
     // If the goat doesn't exist or if there is any problem

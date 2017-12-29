@@ -46,7 +46,11 @@ export class GoatInformationPage {
   removeGoat(id: number){
     this.goatInformationService.removeGoat(id)
                    .subscribe(
-                     goat => console.log("removed"),
+                     data => {
+                       console.log("removed");
+                       this.removeAlert();
+                       this.openBuyAGoatPage();
+                     },
                      error =>  console.log(error));
   }
 
@@ -86,5 +90,23 @@ export class GoatInformationPage {
     });
     confirm.present();
   }
+
+  removeAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Goat removed!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  openBuyAGoatPage(){
+    console.log("Open UpdatePage");
+    this.navCtrl
+      .setRoot(BuyAGoatPage, {id: this.id})
+      .then(()=> {
+        this.navCtrl.popToRoot();
+      });
+        }
+
 
 }
