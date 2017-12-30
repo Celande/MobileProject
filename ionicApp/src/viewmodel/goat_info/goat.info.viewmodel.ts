@@ -64,7 +64,7 @@ export class GoatInfoViewModel {
     this.navCtrl.push(UpdateGoatViewModel, {id: id});
   }
 
-  removeConfirm() {
+  removeConfirm(id: number) {
     let confirm = this.alertCtrl.create({
       title: 'Warning!',
       message: 'Are you sure to remove this goat?',
@@ -79,7 +79,7 @@ export class GoatInfoViewModel {
           text: 'Yes',
           handler: () => {
             console.log('Agree clicked');
-            this.removeGoat(this.id);
+            this.removeGoat(id);
           }
         }
       ]

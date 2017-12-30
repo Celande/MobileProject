@@ -8,10 +8,10 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="show">
     <ion-list>
-      <button ion-item *ngFor="let breed of breeds" (click)='openBreedInfoViewModel(breed.id)'>
-        <img *ngIf="breed.img_path" width="80" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'> {{breed?.name}}
+      <button class="card" ion-item *ngFor="let breed of breeds" (click)='openBreedInfoViewModel(breed.id)'>
+        <img id="img-card" *ngIf="breed.img_path" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'> <p class="capitalize">{{ breed.name }}</p>
       </button>
     </ion-list>
  </ion-content>

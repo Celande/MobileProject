@@ -1,0 +1,24 @@
+#in ionic folder 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+$ cordova build                   # build all platforms that were added
+    $ cordova build android           # build debug for only Android
+    $ cordova build android --debug   # build debug for only Android
+    $ cordova build android --release # build release for only Android
+    
+    $ cordova emulate android       #to deploy the app on a default android emulator
+    $ cordova run android --device  #to deploy the app on a connected device
+    
+    ~/Android/Sdk/tools$ ./emulator -avd AndroidAVD
+    
+    ionic cordova emulate android --list
+ionic cordova run android --list
+
+
+
+
+C:\sdk\platform-tools>adb kill-server
+C:\sdk\platform-tools>adb start-server
+
+AVD manager: ctrl+alt+shift+d

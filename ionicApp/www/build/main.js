@@ -6,11 +6,11 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatInfoViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_info_service__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info_viewmodel__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__goats_goats_viewmodel__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__update_goat_update_goat_viewmodel__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__update_goat_update_goat_viewmodel__ = __webpack_require__(107);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,7 +63,7 @@ var GoatInfoViewModel = (function () {
         console.log("Open UpdateGoatViewModel");
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__update_goat_update_goat_viewmodel__["a" /* UpdateGoatViewModel */], { id: id });
     };
-    GoatInfoViewModel.prototype.removeConfirm = function () {
+    GoatInfoViewModel.prototype.removeConfirm = function (id) {
         var _this = this;
         var confirm = this.alertCtrl.create({
             title: 'Warning!',
@@ -79,7 +79,7 @@ var GoatInfoViewModel = (function () {
                     text: 'Yes',
                     handler: function () {
                         console.log('Agree clicked');
-                        _this.removeGoat(_this.id);
+                        _this.removeGoat(id);
                     }
                 }
             ]
@@ -104,7 +104,7 @@ var GoatInfoViewModel = (function () {
     };
     GoatInfoViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding *ngIf="goat">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n    <button ion-button full (click)="removeConfirm()">Remove</button>\n  </p>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/,
+            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="show" padding *ngIf="goat">\n  <div class="profile">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img class="img-profile" text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n  </p>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__goat_info_service__["a" /* GoatInfoService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -125,7 +125,7 @@ var GoatInfoViewModel = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedInfoViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breed_info_service__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -161,7 +161,7 @@ var BreedInfoViewModel = (function () {
     };
     BreedInfoViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breed-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ breed ? breed.name : \'Breed Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding *ngIf="breed">\n\n  <h3 text-center>\n    {{breed.name}}\n  </h3>\n\n  <img text-center width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n  <h4 class="capitalize" text-center>\n    Height: {{ breed.height == 0 ? \'N/A\' : breed.height + \' cm\' }}<br>\n    Weight: {{ breed.weight == 0 ? \'N/A\' : breed.weight + \' kg\'}}<br>\n    Color: {{ breed.color }}<br>\n    Origin: {{ breed.origin }}<br>\n    <div>{{ breed.hair_growth ? \'Hair Growth: \' + breed.hair_growth + \' cm/month\': \'\' }}</div>\n    <div>{{ breed.milk_by_lactation ? \'Milk by Lactation: \' + breed.milk_by_lactation + \' l\' : \'\' }}</div>\n    <div>{{ breed.duration_of_lactation ? \'Duration of Lactation: \' + breed.duration_of_lactation + \' months\' : \'\' }}</div>\n    Exploitation: {{ breed.exploitation }}<br>\n  </h4>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/,
+            selector: 'page-breed-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ breed ? breed.name : \'Breed Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="show" padding *ngIf="breed">\n<div class="profile">\n  <h3 text-center>\n    {{breed.name}}\n  </h3>\n\n  <img class="img-profile" width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n  <h4 class="capitalize" text-center>\n    Height: {{ breed.height == 0 ? \'N/A\' : breed.height + \' cm\' }}<br>\n    Weight: {{ breed.weight == 0 ? \'N/A\' : breed.weight + \' kg\'}}<br>\n    Color: {{ breed.color }}<br>\n    Origin: {{ breed.origin }}<br>\n    <div>{{ breed.hair_growth ? \'Hair Growth: \' + breed.hair_growth + \' cm/month\': \'\' }}</div>\n    <div>{{ breed.milk_by_lactation ? \'Milk by Lactation: \' + breed.milk_by_lactation + \' l\' : \'\' }}</div>\n    <div>{{ breed.duration_of_lactation ? \'Duration of Lactation: \' + breed.duration_of_lactation + \' months\' : \'\' }}</div>\n    Exploitation: {{ breed.exploitation }}<br>\n  </h4>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__breed_info_service__["a" /* BreedInfoService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -176,47 +176,13 @@ var BreedInfoViewModel = (function () {
 
 /***/ }),
 
-/***/ 117:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 117;
-
-/***/ }),
-
-/***/ 159:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 159;
-
-/***/ }),
-
-/***/ 204:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateGoatViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__update_goat_service__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__goats_goats_viewmodel__ = __webpack_require__(45);
@@ -365,7 +331,7 @@ var UpdateGoatViewModel = (function () {
     };
     UpdateGoatViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<div *ngIf="goatForm">\n<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n    <p>The price can not be below 0.</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n    <p>Example: FR 000 000 00000</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n    <p>This field is required!</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button ion-button>Add an Image</button> <br>\n\n  <button ion-button type="submit" [disabled]="!goatForm.valid">Update</button>\n\n</form>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/,
+            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="show" padding>\n<div *ngIf="goatForm">\n<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n    <p class="bad-field">The price can not be below 0.</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n    <p>Example: FR 000 000 00000</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button id="agree-button" ion-button type="submit" [disabled]="!goatForm.valid">Update</button>\n\n</form>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -382,13 +348,47 @@ var UpdateGoatViewModel = (function () {
 
 /***/ }),
 
+/***/ 118:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 118;
+
+/***/ }),
+
+/***/ 160:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 160;
+
+/***/ }),
+
 /***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGoatViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_goat_service__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__goats_goats_viewmodel__ = __webpack_require__(45);
@@ -510,7 +510,7 @@ var AddGoatViewModel = (function () {
     };
     AddGoatViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n\n    <p>The price can not be below 0.</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n\n    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n\n    <p>Example: FR 000 000 00000</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button>Add an Image</button> <br>\n\n\n\n  <button ion-button type="submit" [disabled]="!goatForm.valid">Sell</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/,
+            selector: 'page-add-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n\n\n<form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n\n    <p class="bad-field">The price can not be below 0.</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n\n    <p>Example: FR 000 000 00000</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button id="agree-button" type="submit" [disabled]="!goatForm.valid">Sell</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__add_goat_service__["a" /* AddGoatService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -532,7 +532,7 @@ var AddGoatViewModel = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreedsViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breeds_service__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breed_info_breed_info_viewmodel__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -572,7 +572,7 @@ var BreedsViewModel = (function () {
     };
     BreedsViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let breed of breeds" (click)=\'openBreedInfoViewModel(breed.id)\'>\n\n        <img *ngIf="breed.img_path" width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'> {{breed?.name}}\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/,
+            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show">\n\n    <ion-list>\n\n      <button class="card" ion-item *ngFor="let breed of breeds" (click)=\'openBreedInfoViewModel(breed.id)\'>\n\n        <img id="img-card" *ngIf="breed.img_path" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'> <p class="capitalize">{{ breed.name }}</p>\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -607,7 +607,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(273);
@@ -615,10 +615,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__viewmodel_goat_info_goat_info_viewmodel__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__viewmodel_add_goat_add_goat_viewmodel__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewmodel_breeds_breeds_viewmodel__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewmodel_update_goat_update_goat_viewmodel__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewmodel_update_goat_update_goat_viewmodel__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__viewmodel_breed_info_breed_info_viewmodel__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -692,9 +692,9 @@ var AppModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__viewmodel_goats_goats_viewmodel__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewmodel_add_goat_add_goat_viewmodel__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__viewmodel_breeds_breeds_viewmodel__ = __webpack_require__(206);
@@ -1018,10 +1018,17 @@ var GoatsService = (function (_super) {
     function GoatsService(http) {
         var _this = _super.call(this, http) || this;
         _this.goatsUrl = _this.mobileUrl + 'goats'; // URL to web API
+        _this.removeGoatUrl = _this.goatsUrl + '/remove/';
         return _this;
     }
     GoatsService.prototype.getGoats = function () {
         return this.http.get(this.goatsUrl)
+            .map(_super.prototype.extractData)
+            .catch(_super.prototype.handleError);
+    };
+    GoatsService.prototype.removeGoat = function (id) {
+        var url = this.removeGoatUrl + id;
+        return this.http.get(url)
             .map(_super.prototype.extractData)
             .catch(_super.prototype.handleError);
     };
@@ -1200,7 +1207,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CommonService = (function () {
     function CommonService(http) {
-        this.apiUrl = 'http://sraullet.freeboxos.fr/'; // http://localhost:8080/
+        this.apiUrl = 'http://localhost:8080/'; //'http://sraullet.freeboxos.fr/'; // 'http://localhost:8080/';
         this.mobileUrl = this.apiUrl + 'mobile/';
         this.http = http;
     }
@@ -1236,9 +1243,10 @@ var CommonService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoatsViewModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goat_info_goat_info_viewmodel__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__goats_service__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__update_goat_update_goat_viewmodel__ = __webpack_require__(107);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1252,15 +1260,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var GoatsViewModel = (function () {
-    function GoatsViewModel(navCtrl, navParams, goatsService) {
+    function GoatsViewModel(navCtrl, navParams, alertCtrl, goatsService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
         this.goatsService = goatsService;
         this.mode = 'Observable';
         this.goats = null;
         this.apiUrl = this.goatsService.apiUrl;
     }
+    GoatsViewModel_1 = GoatsViewModel;
     GoatsViewModel.prototype.ngOnInit = function () {
         console.log("ngOnInit");
         this.getGoats();
@@ -1270,20 +1282,72 @@ var GoatsViewModel = (function () {
         this.goatsService.getGoats()
             .subscribe(function (goats) { return _this.goats = goats; }, function (error) { return console.error(error); });
     };
+    GoatsViewModel.prototype.removeGoat = function (id) {
+        var _this = this;
+        this.goatsService.removeGoat(id)
+            .subscribe(function (data) {
+            console.log("removed");
+            _this.removeAlert();
+            _this.openGoatsViewModel();
+        }, function (error) { return console.error(error); });
+    };
     GoatsViewModel.prototype.openGoatInfoViewModel = function (id) {
         console.log("Open GoatInfoViewModel");
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__goat_info_goat_info_viewmodel__["a" /* GoatInfoViewModel */], { id: id });
     };
-    GoatsViewModel = __decorate([
+    GoatsViewModel.prototype.openUpdateGoatViewModel = function (id) {
+        console.log("Open UpdateGoatViewModel");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__update_goat_update_goat_viewmodel__["a" /* UpdateGoatViewModel */], { id: id });
+    };
+    GoatsViewModel.prototype.openGoatsViewModel = function () {
+        var _this = this;
+        console.log("Open GoatsViewModel");
+        //this.navCtrl.push(GoatsViewModel);
+        this.navCtrl
+            .setRoot(GoatsViewModel_1)
+            .then(function () {
+            _this.navCtrl.popToRoot();
+        });
+    };
+    GoatsViewModel.prototype.removeConfirm = function (id) {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: 'Warning!',
+            message: 'Are you sure to remove this goat?',
+            buttons: [
+                {
+                    text: 'No',
+                    handler: function () {
+                        console.log('Disagree clicked');
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: function () {
+                        console.log('Agree clicked');
+                        _this.removeGoat(id);
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    GoatsViewModel.prototype.removeAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Goat removed!',
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    GoatsViewModel = GoatsViewModel_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goats',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-card *ngFor="let goat of goats" (click)="openGoatInfoViewModel(goat.id)">\n\n      <img width="80" src=\'{{ apiUrl + goat?.img_path }}\'>\n\n    <ion-card-content>\n\n      <ion-card-title>\n\n        {{goat?.name}}\n\n      </ion-card-title>\n\n      <p class="capitalize">\n\n        €{{goat?.price}}<br>\n\n        {{goat?.gender}}<br>\n\n        {{goat?.breed_name}}<br>\n\n      </p>\n\n    </ion-card-content>\n\n\n\n    <ion-row no-padding>\n\n      <ion-col>\n\n        <button ion-button clear small color="default" icon-start>\n\n          <ion-icon name=\'arrow-forward\'></ion-icon>\n\n          Tap to read more\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/,
+            selector: 'page-goats',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n  <ion-card class="card" *ngFor="let goat of goats" (click)="openGoatInfoViewModel(goat.id)">\n\n      <img id="img-card" src=\'{{ apiUrl + goat?.img_path }}\'>\n\n    <ion-card-content>\n\n      <ion-card-title class="capitalize">\n\n        {{ goat.name }}\n\n      </ion-card-title>\n\n      <p class="capitalize">\n\n        €{{ goat.price }}<br>\n\n        {{ goat.gender }}<br>\n\n        {{ goat.breed_name }}<br>\n\n        {{ goat.age }}<br>\n\n      </p>\n\n    </ion-card-content>\n\n\n\n    <ion-row no-padding>\n\n      <ion-col>\n\n        <button ion-button clear small color="default" icon-start>\n\n          <ion-icon name=\'arrow-forward\'></ion-icon>\n\n          Tap to read more\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <p>\n\n    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n\n    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n\n  </p>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]) === "function" && _d || Object])
     ], GoatsViewModel);
     return GoatsViewModel;
+    var GoatsViewModel_1, _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=goats.viewmodel.js.map

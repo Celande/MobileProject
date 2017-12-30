@@ -25681,3 +25681,88 @@ ion-navbar.toolbar {
 .capitalize {
   text-transform: capitalize;
 }
+
+.profile {
+  text-align: center;
+  background-color: white;
+  border-radius: 5%;
+}
+
+.card {
+  text-align: center;
+  background-color: white;
+  border-radius: 5%;
+}
+
+.show {
+  background-color: #CCE6E3;
+  padding-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 5%;
+  text-align: center;
+}
+
+#img-card {
+  width: 30%;
+  min-width: 100px;
+  text-align: center;
+  border-radius: 20%;
+  margin-top: 1%;
+}
+
+.img-profile {
+  width: 50%;
+  min-width: 100px;
+  text-align: center;
+}
+
+#update-btn {
+  float: left;
+  background-color: #FFE766;
+  border-color: #FFE766;
+  color: black;
+  width: 10%;
+  min-width: 60px;
+  margin-left: 5%;
+  margin-bottom: 1%;
+}
+
+#remove-btn {
+  float: right;
+  background-color: #FF5D5D;
+  border-color: #FF5D5D;
+  width: 10%;
+  min-width: 60px;
+  margin-right: 5%;
+  margin-bottom: 1%;
+}
+
+#agree-btn {
+  float: center;
+  background-color: #329932;
+  border-color: #329932;
+  width: 10%;
+  min-width: 60px;
+  margin-bottom: 1%;
+}
+
+#update-btn:hover {
+  background-color: #FFDB1A;
+  border-color: #FFDB1A;
+  width: 10%;
+}
+
+#remove-btn:hover {
+  background-color: #FF1111;
+  border-color: #FF1111;
+}
+
+#agree-btn:hover {
+  background-color: #2D892D;
+  border-color: #2D892D;
+}
+
+.bad-field {
+  color: red;
+}

@@ -9,7 +9,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="show" padding>
 
 <form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >
   <ion-item [ngClass]="{'error-border':!goatForm.controls.name.valid && goatForm.controls.name.touched}">
@@ -17,7 +17,7 @@
     <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.name.hasError('required') && goatForm.controls.name.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
 
   <ion-item [ngClass]="{'error-border':!goatForm.controls.price.valid && goatForm.controls.price.touched}">
@@ -25,10 +25,10 @@
     <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.price.hasError('required') && goatForm.controls.price.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
   <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">
-    <p>The price can not be below 0.</p>
+    <p class="bad-field">The price can not be below 0.</p>
   </ion-item>
 
   <ion-item [ngClass]="{'error-border':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">
@@ -39,7 +39,7 @@
     </ion-select>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.gender.hasError('required') && goatForm.controls.gender.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
 
   <ion-item [ngClass]="{'error-border':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">
@@ -50,7 +50,7 @@
     </ion-select>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.breed_id.hasError('required') && goatForm.controls.breed_id.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
 
   <ion-item [ngClass]="{'error-border':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">
@@ -58,7 +58,7 @@
     <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.localisation.hasError('required') && goatForm.controls.localisation.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
 
   <ion-item [ngClass]="{'error-border':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">
@@ -69,7 +69,7 @@
     <p>This field is required!</p>
   </ion-item>
   <ion-item *ngIf="(goatForm.controls.identification.hasError('pattern') || goatForm.controls.identification.hasError('maxLength')) && goatForm.controls.identification.touched">
-    <p>The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>
+    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>
     <p>Example: FR 000 000 00000</p>
   </ion-item>
 
@@ -78,7 +78,7 @@
     <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>
   </ion-item>
   <ion-item *ngIf="goatForm.controls.birthdate.hasError('required') && goatForm.controls.birthdate.touched">
-    <p>This field is required!</p>
+    <p class="bad-field">This field is required!</p>
   </ion-item>
 
   <ion-item>
@@ -86,9 +86,7 @@
     <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
   </ion-item>
 
-  <button ion-button>Add an Image</button> <br>
-
-  <button ion-button type="submit" [disabled]="!goatForm.valid">Sell</button>
+  <button ion-button id="agree-button" type="submit" [disabled]="!goatForm.valid">Sell</button>
 
 </form>
 

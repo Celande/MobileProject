@@ -11,6 +11,7 @@ import { CommonService } from '../common/common.service';
 @Injectable()
 export class GoatsService extends CommonService {
   private goatsUrl: string = this.mobileUrl + 'goats';  // URL to web API
+  private removeGoatUrl: string = this.goatsUrl + '/remove/';
 
   constructor (http: Http) { super(http); }
 
@@ -18,6 +19,14 @@ export class GoatsService extends CommonService {
     return this.http.get(this.goatsUrl)
                     .map(super.extractData)
                     .catch(super.handleError);
+
+  }
+
+  removeGoat(id: number): Observable<GoatModel> {
+    let url = this.removeGoatUrl + id;
+    return this.http.get(url)
+    .map(super.extractData)
+    .catch(super.handleError);
 
   }
 }

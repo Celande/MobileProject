@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Dec 30 00:44:26 CET 2017
+#Sat Dec 30 09:16:36 CET 2017
 5.base=/home/hyenaquenn/MobileProject/ionicApp/platforms/android/build/intermediates/assets/debug
 42.base=/home/hyenaquenn/MobileProject/ionicApp/platforms/android/build/intermediates/assets/debug
 32.set=ANDROID_RESOURCE
