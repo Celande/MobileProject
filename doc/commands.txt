@@ -20,8 +20,8 @@ ionic start --list
 ionic cordova platform add android
 
 # Test for android
-ionic build android
-ionic run android [options]
+ionic cordova build android
+ionic cordova run android [options]
 	Options:
 		[--livereload|-l] .......  Live Reload (beta)
 		[--consolelogs|-c] ......  Show app console log
