@@ -15,7 +15,7 @@ import { UpdateGoatViewModel } from '../update_goat/update.goat.viewmodel';
 export class GoatsViewModel implements OnInit {
 
   mode = 'Observable';
-  goats: GoatModel[] = null;
+  goats: GoatModel[];
   apiUrl: string = this.goatsService.apiUrl;
 
   constructor(

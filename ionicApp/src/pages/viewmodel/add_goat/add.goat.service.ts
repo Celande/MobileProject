@@ -6,7 +6,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FormGroup } from '@angular/forms';
 
-import { GoatModel } from '../../model/goat';
 import { BreedModel } from '../../model/breed';
 import { CommonService } from '../common/common.service';
 

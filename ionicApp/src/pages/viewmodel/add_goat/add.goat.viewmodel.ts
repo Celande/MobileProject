@@ -6,6 +6,8 @@ import { AddGoatService } from './add.goat.service';
 import { BreedModel } from '../../model/breed';
 import { GoatsViewModel } from '../goats/goats.viewmodel';
 
+import { PriceValidator } from '../validators/price.validator';
+
 @Component({
   selector: 'page-add-goat',
   templateUrl: '../../view/add_goat/add_goat.html',
@@ -29,7 +31,7 @@ export class AddGoatViewModel {
       this.goatForm = this.formBuilder.group({
         name: ['', Validators.required],
         price: [
-            this.goat.price,
+            '',
             Validators.compose([
               PriceValidator.isValid,
               Validators.required

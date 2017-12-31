@@ -1,8 +1,0 @@
-{
-  "name": "MobileProject",
-  "app_id": "e4a42e9d",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
-}
