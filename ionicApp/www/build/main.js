@@ -28,10 +28,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var GoatInfoViewModel = (function () {
-    function GoatInfoViewModel(navCtrl, navParams, alertCtrl, goatInfoService) {
+    function GoatInfoViewModel(navCtrl, navParams, alertCtrl, toastCtrl, goatInfoService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
         this.goatInfoService = goatInfoService;
         this.mode = 'Observable';
         this.apiUrl = this.goatInfoService.apiUrl;
@@ -51,7 +52,7 @@ var GoatInfoViewModel = (function () {
         this.goatInfoService.removeGoat(id)
             .subscribe(function (data) {
             console.log("removed");
-            _this.removeAlert();
+            _this.removeToast();
             _this.openGoatsViewModel();
         }, function (error) { return console.error(error); });
     };
@@ -86,12 +87,16 @@ var GoatInfoViewModel = (function () {
         });
         confirm.present();
     };
-    GoatInfoViewModel.prototype.removeAlert = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Goat removed!',
-            buttons: ['OK']
+    GoatInfoViewModel.prototype.removeToast = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Goat removed!',
+            duration: 3000,
+            position: 'bottom'
         });
-        alert.present();
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
     };
     GoatInfoViewModel.prototype.openGoatsViewModel = function () {
         var _this = this;
@@ -104,15 +109,13 @@ var GoatInfoViewModel = (function () {
     };
     GoatInfoViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="show" padding *ngIf="goat">\n  <div class="profile">\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <img class="img-profile" text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  <h4 class="capitalize" text-center>\n    Price: €{{ goat.price }}<br>\n\n    Gender: {{ goat.gender }}<br>\n\n    Breed: <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    Age: {{ goat.age }}<br>\n    Location: {{ goat.localisation }}<br>\n    Birthdate: {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4 text-center>\n    Identification: {{ goat.identification }}<br>\n    Description: {{ goat.descrption }}\n  </h4>\n  <p>\n    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n  </p>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/,
+            selector: 'page-goat-information',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ goat ? goat.name : \'Goat Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="show" padding *ngIf="goat">\n  <div class="profile">\n    <br>\n    <br>\n  <h3 text-center>\n    {{goat.name}}\n  </h3>\n  <div *ngIf="goat.img_path != \'.\'">\n    <img class="img-profile" text-center width="80" src=\'{{ apiUrl + goat.img_path }}\'>\n  </div>\n  <h4 class="capitalize">\n    <label>Price:</label> €{{ goat.price }}<br>\n\n    <label>Gender:</label> {{ goat.gender }}<br>\n\n    <label>Breed:</label> <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>\n    <label>Age:</label> {{ goat.age }}<br>\n    <label>Location:</label> {{ goat.localisation }}<br>\n    <label>Birthdate:</label> {{ goat.birthdate | date }}<br>\n  </h4>\n  <h4>\n    <label>Identification:</label> {{ goat.identification }}<br>\n    <div *ngIf="goat.description">\n      <label>Description:</label> {{ goat.description }}\n    </div>\n  </h4>\n  <br>\n  <br>\n  <p>\n    <button ion-button large id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n    <button ion-button large id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n  </p>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goat_info/goat_info.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__goat_info_service__["a" /* GoatInfoService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2__goat_info_service__["a" /* GoatInfoService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__goat_info_service__["a" /* GoatInfoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__goat_info_service__["a" /* GoatInfoService */]) === "function" && _e || Object])
     ], GoatInfoViewModel);
     return GoatInfoViewModel;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=goat.info.viewmodel.js.map
@@ -161,7 +164,7 @@ var BreedInfoViewModel = (function () {
     };
     BreedInfoViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breed-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ breed ? breed.name : \'Breed Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="show" padding *ngIf="breed">\n<div class="profile">\n  <h3 text-center>\n    {{breed.name}}\n  </h3>\n\n  <img class="img-profile" width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n  <h4 class="capitalize" text-center>\n    Height: {{ breed.height == 0 ? \'N/A\' : breed.height + \' cm\' }}<br>\n    Weight: {{ breed.weight == 0 ? \'N/A\' : breed.weight + \' kg\'}}<br>\n    Color: {{ breed.color }}<br>\n    Origin: {{ breed.origin }}<br>\n    <div>{{ breed.hair_growth ? \'Hair Growth: \' + breed.hair_growth + \' cm/month\': \'\' }}</div>\n    <div>{{ breed.milk_by_lactation ? \'Milk by Lactation: \' + breed.milk_by_lactation + \' l\' : \'\' }}</div>\n    <div>{{ breed.duration_of_lactation ? \'Duration of Lactation: \' + breed.duration_of_lactation + \' months\' : \'\' }}</div>\n    Exploitation: {{ breed.exploitation }}<br>\n  </h4>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/,
+            selector: 'page-breed-info',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ breed ? breed.name : \'Breed Information\' }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="show" padding *ngIf="breed">\n<div class="profile">\n  <br>\n  <br>\n  <h3 text-center>\n    {{breed.name}}\n  </h3>\n  <div *ngIf="breed.img_path != \'.\'">\n    <img class="img-profile" width="80" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n  </div>\n  <h4 class="capitalize">\n    <label>Height:</label> {{ breed.height == 0 ? \'N/A\' : breed.height + \' cm\' }}<br>\n    <label>Weight:</label> {{ breed.weight == 0 ? \'N/A\' : breed.weight + \' kg\'}}<br>\n    <label>Color:</label> {{ breed.color }}<br>\n    <label>Origin:</label> {{ breed.origin }}<br>\n    <div *ngIf="breed.hair_growth">\n      <label>Hair Growth:</label> {{ breed.hair_growth + \' cm/month\' }}\n    </div>\n    <div *ngIf="breed.milk_by_lactation">\n      <label>Milk by Lactation:</label> {{ breed.milk_by_lactation + \' l\' }}\n    </div>\n    <div *ngIf="breed.duration_of_lactation">\n      <label>Duration of Lactation:</label> {{ breed.duration_of_lactation + \' months\' }}\n    </div>\n    <label>Exploitation:</label> {{ breed.exploitation }}<br>\n    <br>\n    <br>\n  </h4>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breed_info/breed_info.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__breed_info_service__["a" /* BreedInfoService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -204,11 +207,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // https://www.gajotres.net/ionic-2-how-o-create-and-validate-forms/2/
 var UpdateGoatViewModel = (function () {
-    function UpdateGoatViewModel(navCtrl, navParams, alertCtrl, viewCtrl, updateGoatService, formBuilder) {
+    function UpdateGoatViewModel(navCtrl, navParams, alertCtrl, toastCtrl, updateGoatService, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
-        this.viewCtrl = viewCtrl;
+        this.toastCtrl = toastCtrl;
         this.updateGoatService = updateGoatService;
         this.formBuilder = formBuilder;
         this.mode = 'Observable';
@@ -272,7 +275,7 @@ var UpdateGoatViewModel = (function () {
         this.updateGoatService.update(this.goatForm)
             .subscribe(function (goat) {
             console.log("success " + goat);
-            _this.updateAlert();
+            _this.updateToast();
             _this.openGoatInfoViewModel();
         }, function (error) {
             console.error(error);
@@ -322,26 +325,26 @@ var UpdateGoatViewModel = (function () {
             _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__goat_info_goat_info_viewmodel__["a" /* GoatInfoViewModel */], { id: _this.id });
         });
     };
-    UpdateGoatViewModel.prototype.updateAlert = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Goat updated!',
-            buttons: ['OK']
+    UpdateGoatViewModel.prototype.updateToast = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Goat updated!',
+            duration: 3000,
+            position: 'bottom'
         });
-        alert.present();
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
     };
     UpdateGoatViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="show" padding>\n<div *ngIf="goatForm">\n<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n    <p class="bad-field">The price can not be below 0.</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n    <p>Example: FR 000 000 00000</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button id="agree-button" ion-button type="submit" [disabled]="!goatForm.valid">Update</button>\n\n</form>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/,
+            selector: 'page-update',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Update</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="show" padding>\n<div *ngIf="goatForm">\n<form [formGroup]="goatForm" (ngSubmit)="updateGoat()" >\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n    <ion-label color="primary">Name</ion-label>\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n    <ion-label color="primary">Price</ion-label>\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n    <p class="bad-field">The price can not be below 0.</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n    <ion-label color="primary">Gender</ion-label>\n    <ion-select formControlName="gender" interface="popover">\n      <ion-option value="female">Female</ion-option>\n      <ion-option value="male">Male</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n    <ion-label color="primary">Breed</ion-label>\n    <ion-select formControlName="breed_id">\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n      <ion-option [value]=0>Other</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n    <ion-label color="primary">Localisation</ion-label>\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n    <ion-label color="primary" fixed>Identification</ion-label>\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n    <p>This field is required!</p>\n  </ion-item>\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n    <p>Example: FR 000 000 00000</p>\n  </ion-item>\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n  </ion-item>\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n    <p class="bad-field">This field is required!</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-label color="primary">Description</ion-label>\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n  </ion-item>\n\n  <button id="agree-button" ion-button large type="submit" [disabled]="!goatForm.valid">Update</button>\n\n</form>\n</div>\n</ion-content>\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/update_goat/update_goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__update_goat_service__["a" /* UpdateGoatService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object])
     ], UpdateGoatViewModel);
     return UpdateGoatViewModel;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=update.goat.viewmodel.js.map
@@ -407,10 +410,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AddGoatViewModel = (function () {
-    function AddGoatViewModel(navCtrl, navParams, alertCtrl, addGoatService, formBuilder) {
+    function AddGoatViewModel(navCtrl, navParams, alertCtrl, toastCtrl, addGoatService, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
         this.addGoatService = addGoatService;
         this.formBuilder = formBuilder;
         this.mode = 'Observable';
@@ -451,7 +455,7 @@ var AddGoatViewModel = (function () {
         this.addGoatService.create(this.goatForm)
             .subscribe(function (goat) {
             console.log("success " + goat);
-            _this.addAlert();
+            _this.addToast();
             _this.openGoatsViewModel();
         }, function (error) {
             console.error(error);
@@ -501,25 +505,26 @@ var AddGoatViewModel = (function () {
             _this.navCtrl.popToRoot();
         });
     };
-    AddGoatViewModel.prototype.addAlert = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Goat added!',
-            buttons: ['OK']
+    AddGoatViewModel.prototype.addToast = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Goat added!',
+            duration: 3000,
+            position: 'top'
         });
-        alert.present();
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
     };
     AddGoatViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n\n\n<form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n\n    <p class="bad-field">The price can not be below 0.</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n\n    <p>Example: FR 000 000 00000</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button id="agree-button" type="submit" [disabled]="!goatForm.valid">Sell</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/,
+            selector: 'page-add-goat',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/'@@ -0,0 +1,13 @@\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Sell A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n\n\n<form [formGroup]="goatForm" (ngSubmit)="saveGoat()" >\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.name.valid && goatForm.controls.name.touched}">\n\n    <ion-label color="primary">Name</ion-label>\n\n    <ion-input type="text" formControlName="name" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.name.hasError(\'required\') && goatForm.controls.name.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.price.valid && goatForm.controls.price.touched}">\n\n    <ion-label color="primary">Price</ion-label>\n\n    <ion-input type="number" formControlName="price" placeholder="€" min=0 ></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.price.hasError(\'required\') && goatForm.controls.price.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.value.price < 0 && goatForm.controls.price.touched">\n\n    <p class="bad-field">The price can not be below 0.</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.gender.valid && goatForm.controls.gender.touched}">\n\n    <ion-label color="primary">Gender</ion-label>\n\n    <ion-select formControlName="gender" interface="popover">\n\n      <ion-option value="female">Female</ion-option>\n\n      <ion-option value="male">Male</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.gender.hasError(\'required\') && goatForm.controls.gender.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.breed_id.valid && goatForm.controls.breed_id.touched}">\n\n    <ion-label color="primary">Breed</ion-label>\n\n    <ion-select formControlName="breed_id">\n\n      <ion-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</ion-option>\n\n      <ion-option [value]=0>Other</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.breed_id.hasError(\'required\') && goatForm.controls.breed_id.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.localisation.valid && goatForm.controls.localisation.touched}">\n\n    <ion-label color="primary">Localisation</ion-label>\n\n    <ion-input type="text" formControlName="localisation" placeholder="Text Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.localisation.hasError(\'required\') && goatForm.controls.localisation.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.identification.valid && goatForm.controls.identification.touched}">\n\n    <ion-label color="primary" fixed>Identification</ion-label>\n\n    <ion-input type="text" formControlName="identification" placeholder="Identification"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.identification.hasError(\'required\') && goatForm.controls.identification.touched">\n\n    <p>This field is required!</p>\n\n  </ion-item>\n\n  <ion-item *ngIf="(goatForm.controls.identification.hasError(\'pattern\') || goatForm.controls.identification.hasError(\'maxLength\')) && goatForm.controls.identification.touched">\n\n    <p class="bad-field">The pattern is 2 to 3 uppercase letters and numbers written this way: XXX XXX XXXXX</p>\n\n    <p>Example: FR 000 000 00000</p>\n\n  </ion-item>\n\n\n\n  <ion-item [ngClass]="{\'error-border\':!goatForm.controls.birthdate.valid && goatForm.controls.birthdate.touched}">\n\n    <ion-label color="primary" fixed>Birthdate</ion-label>\n\n    <ion-input type="date" formControlName="birthdate" placeholder="Date Input"></ion-input>\n\n  </ion-item>\n\n  <ion-item *ngIf="goatForm.controls.birthdate.hasError(\'required\') && goatForm.controls.birthdate.touched">\n\n    <p class="bad-field">This field is required!</p>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label color="primary">Description</ion-label>\n\n    <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>\n\n  </ion-item>\n\n\n\n  <button ion-button large id="agree-button" type="submit" [disabled]="!goatForm.valid">Sell</button>\n\n\n\n</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/add_goat/add_goat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__add_goat_service__["a" /* AddGoatService */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_3__add_goat_service__["a" /* AddGoatService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__add_goat_service__["a" /* AddGoatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__add_goat_service__["a" /* AddGoatService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object])
     ], AddGoatViewModel);
     return AddGoatViewModel;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=add.goat.viewmodel.js.map
@@ -572,7 +577,7 @@ var BreedsViewModel = (function () {
     };
     BreedsViewModel = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show">\n\n    <ion-list>\n\n      <button class="card" ion-item *ngFor="let breed of breeds" (click)=\'openBreedInfoViewModel(breed.id)\'>\n\n        <img id="img-card" *ngIf="breed.img_path" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'> <p class="capitalize">{{ breed.name }}</p>\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/,
+            selector: 'page-breeds',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Breeds</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show">\n\n    <ion-list>\n\n      <button class="card" ion-item *ngFor="let breed of breeds" (click)=\'openBreedInfoViewModel(breed.id)\'>\n\n        <div *ngIf="breed.img_path != \'.\'">\n\n          <img id="img-card" *ngIf="breed.img_path" src=\'{{ breed.img_path ? apiUrl + breed.img_path : "" }}\'>\n\n        </div>\n\n      <p class="capitalize">{{ breed.name }}</p>\n\n      </button>\n\n    </ion-list>\n\n </ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/breeds/breeds.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__breeds_service__["a" /* BreedsService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -1207,7 +1212,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CommonService = (function () {
     function CommonService(http) {
-        this.apiUrl = 'http://localhost:8080/'; //'http://sraullet.freeboxos.fr/'; // 'http://localhost:8080/';
+        this.apiUrl = 'http://sraullet.freeboxos.fr/'; // 'http://localhost:8080/';
         this.mobileUrl = this.apiUrl + 'mobile/';
         this.http = http;
     }
@@ -1263,10 +1268,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var GoatsViewModel = (function () {
-    function GoatsViewModel(navCtrl, navParams, alertCtrl, goatsService) {
+    function GoatsViewModel(navCtrl, navParams, alertCtrl, toastCtrl, goatsService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
         this.goatsService = goatsService;
         this.mode = 'Observable';
         this.goats = null;
@@ -1287,7 +1293,7 @@ var GoatsViewModel = (function () {
         this.goatsService.removeGoat(id)
             .subscribe(function (data) {
             console.log("removed");
-            _this.removeAlert();
+            _this.removeToast();
             _this.openGoatsViewModel();
         }, function (error) { return console.error(error); });
     };
@@ -1332,22 +1338,26 @@ var GoatsViewModel = (function () {
         });
         confirm.present();
     };
-    GoatsViewModel.prototype.removeAlert = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Goat removed!',
-            buttons: ['OK']
+    GoatsViewModel.prototype.removeToast = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Goat removed!',
+            duration: 3000,
+            position: 'bottom'
         });
-        alert.present();
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
     };
     GoatsViewModel = GoatsViewModel_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-goats',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n  <ion-card class="card" *ngFor="let goat of goats" (click)="openGoatInfoViewModel(goat.id)">\n\n      <img id="img-card" src=\'{{ apiUrl + goat?.img_path }}\'>\n\n    <ion-card-content>\n\n      <ion-card-title class="capitalize">\n\n        {{ goat.name }}\n\n      </ion-card-title>\n\n      <p class="capitalize">\n\n        €{{ goat.price }}<br>\n\n        {{ goat.gender }}<br>\n\n        {{ goat.breed_name }}<br>\n\n        {{ goat.age }}<br>\n\n      </p>\n\n    </ion-card-content>\n\n\n\n    <ion-row no-padding>\n\n      <ion-col>\n\n        <button ion-button clear small color="default" icon-start>\n\n          <ion-icon name=\'arrow-forward\'></ion-icon>\n\n          Tap to read more\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <p>\n\n    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n\n    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n\n  </p>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/,
+            selector: 'page-goats',template:/*ion-inline-start:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Buy A Goat</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="show" padding>\n\n  <ion-card class="card" *ngFor="let goat of goats">\n\n    <div (click)="openGoatInfoViewModel(goat.id)">\n\n      <div *ngIf="goat.img_path != \'.\'">\n\n        <img id="img-card" src=\'{{ apiUrl + goat.img_path }}\'>\n\n      </div>\n\n      <ion-card-content>\n\n        <ion-card-title class="capitalize">\n\n          {{ goat.name }}\n\n        </ion-card-title>\n\n        <p class="capitalize">\n\n          €{{ goat.price }}<br>\n\n          {{ goat.gender }}<br>\n\n          {{ goat.breed_name }}<br>\n\n          {{ goat.age }}<br>\n\n        </p>\n\n      </ion-card-content>\n\n    </div>\n\n    <p>\n\n      <button ion-button id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>\n\n      <button ion-button id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>\n\n    </p>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/home/hyenaquenn/MobileProject/ionicApp/src/view/goats/goats.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__goats_service__["a" /* GoatsService */]) === "function" && _e || Object])
     ], GoatsViewModel);
     return GoatsViewModel;
-    var GoatsViewModel_1, _a, _b, _c, _d;
+    var GoatsViewModel_1, _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=goats.viewmodel.js.map

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CommonService {
-  readonly apiUrl: string = 'http://localhost:8080/'; //'http://sraullet.freeboxos.fr/'; // 'http://localhost:8080/';
+  readonly apiUrl: string = 'http://sraullet.freeboxos.fr/'; // 'http://localhost:8080/';
   readonly mobileUrl: string = this.apiUrl + 'mobile/';
   protected http: Http;
 

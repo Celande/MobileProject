@@ -6,7 +6,7 @@ export interface GoatModel {
     breed_id: number,
     gender: string,
     localisation: string,
-    description?: string,
+    description: string,
     identification: string,
     img_id: number,
     img_path: string

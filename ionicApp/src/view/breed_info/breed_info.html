@@ -9,20 +9,31 @@
 
 <ion-content class="show" padding *ngIf="breed">
 <div class="profile">
+  <br>
+  <br>
   <h3 text-center>
     {{breed.name}}
   </h3>
-
-  <img class="img-profile" width="80" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'>
-  <h4 class="capitalize" text-center>
-    Height: {{ breed.height == 0 ? 'N/A' : breed.height + ' cm' }}<br>
-    Weight: {{ breed.weight == 0 ? 'N/A' : breed.weight + ' kg'}}<br>
-    Color: {{ breed.color }}<br>
-    Origin: {{ breed.origin }}<br>
-    <div>{{ breed.hair_growth ? 'Hair Growth: ' + breed.hair_growth + ' cm/month': '' }}</div>
-    <div>{{ breed.milk_by_lactation ? 'Milk by Lactation: ' + breed.milk_by_lactation + ' l' : '' }}</div>
-    <div>{{ breed.duration_of_lactation ? 'Duration of Lactation: ' + breed.duration_of_lactation + ' months' : '' }}</div>
-    Exploitation: {{ breed.exploitation }}<br>
+  <div *ngIf="breed.img_path != '.'">
+    <img class="img-profile" width="80" src='{{ breed.img_path ? apiUrl + breed.img_path : "" }}'>
+  </div>
+  <h4 class="capitalize">
+    <label>Height:</label> {{ breed.height == 0 ? 'N/A' : breed.height + ' cm' }}<br>
+    <label>Weight:</label> {{ breed.weight == 0 ? 'N/A' : breed.weight + ' kg'}}<br>
+    <label>Color:</label> {{ breed.color }}<br>
+    <label>Origin:</label> {{ breed.origin }}<br>
+    <div *ngIf="breed.hair_growth">
+      <label>Hair Growth:</label> {{ breed.hair_growth + ' cm/month' }}
+    </div>
+    <div *ngIf="breed.milk_by_lactation">
+      <label>Milk by Lactation:</label> {{ breed.milk_by_lactation + ' l' }}
+    </div>
+    <div *ngIf="breed.duration_of_lactation">
+      <label>Duration of Lactation:</label> {{ breed.duration_of_lactation + ' months' }}
+    </div>
+    <label>Exploitation:</label> {{ breed.exploitation }}<br>
+    <br>
+    <br>
   </h4>
 </div>
 </ion-content>

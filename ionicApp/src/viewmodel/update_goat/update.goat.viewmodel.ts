@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { UpdateGoatService } from './update.goat.service';
 import { BreedModel } from '../../model/breed';
@@ -28,7 +28,7 @@ export class UpdateGoatViewModel{
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    private viewCtrl: ViewController,
+    private toastCtrl: ToastController,
     private updateGoatService: UpdateGoatService,
     private formBuilder: FormBuilder
   ) { this.id = navParams.get('id');  }
@@ -103,7 +103,7 @@ export class UpdateGoatViewModel{
     .subscribe(
       goat => {
         console.log("success "+goat);
-        this.updateAlert();
+        this.updateToast();
         this.openGoatInfoViewModel();
       },
       error => {
@@ -158,11 +158,17 @@ export class UpdateGoatViewModel{
     );
   }
 
-  updateAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Goat updated!',
-      buttons: ['OK']
+  updateToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Goat updated!',
+      duration: 3000,
+      position: 'bottom'
     });
-    alert.present();
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }

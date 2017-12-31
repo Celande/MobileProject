@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, ToastController } from 'ionic-angular';
 
 import { GoatInfoService } from './goat.info.service';
 import { GoatModel } from '../../model/goat';
@@ -24,6 +24,7 @@ export class GoatInfoViewModel {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private goatInfoService: GoatInfoService
   )
   { this.id = navParams.get('id'); }
@@ -47,7 +48,7 @@ export class GoatInfoViewModel {
     .subscribe(
       data => {
         console.log("removed");
-        this.removeAlert();
+        this.removeToast();
         this.openGoatsViewModel();
       },
       error =>  console.error(error)
@@ -87,12 +88,18 @@ export class GoatInfoViewModel {
     confirm.present();
   }
 
-  removeAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Goat removed!',
-      buttons: ['OK']
+  removeToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Goat removed!',
+      duration: 3000,
+      position: 'bottom'
     });
-    alert.present();
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
   openGoatsViewModel(){

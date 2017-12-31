@@ -9,33 +9,27 @@
 
 
 <ion-content class="show" padding>
-  <ion-card class="card" *ngFor="let goat of goats" (click)="openGoatInfoViewModel(goat.id)">
-      <img id="img-card" src='{{ apiUrl + goat?.img_path }}'>
-    <ion-card-content>
-      <ion-card-title class="capitalize">
-        {{ goat.name }}
-      </ion-card-title>
-      <p class="capitalize">
-        €{{ goat.price }}<br>
-        {{ goat.gender }}<br>
-        {{ goat.breed_name }}<br>
-        {{ goat.age }}<br>
-      </p>
-    </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="default" icon-start>
-          <ion-icon name='arrow-forward'></ion-icon>
-          Tap to read more
-        </button>
-      </ion-col>
-    </ion-row>
-
+  <ion-card class="card" *ngFor="let goat of goats">
+    <div (click)="openGoatInfoViewModel(goat.id)">
+      <div *ngIf="goat.img_path != '.'">
+        <img id="img-card" src='{{ apiUrl + goat.img_path }}'>
+      </div>
+      <ion-card-content>
+        <ion-card-title class="capitalize">
+          {{ goat.name }}
+        </ion-card-title>
+        <p class="capitalize">
+          €{{ goat.price }}<br>
+          {{ goat.gender }}<br>
+          {{ goat.breed_name }}<br>
+          {{ goat.age }}<br>
+        </p>
+      </ion-card-content>
+    </div>
     <p>
-    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>
-    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>
-  </p>
+      <button ion-button id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>
+      <button ion-button id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>
+    </p>
   </ion-card>
 
 </ion-content>

@@ -10,25 +10,33 @@
 
 <ion-content class="show" padding *ngIf="goat">
   <div class="profile">
+    <br>
+    <br>
   <h3 text-center>
     {{goat.name}}
   </h3>
-  <img class="img-profile" text-center width="80" src='{{ apiUrl + goat.img_path }}'>
-  <h4 class="capitalize" text-center>
-    Price: €{{ goat.price }}<br>
-    Gender: {{ goat.gender }}<br>
-    Breed: <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>
-    Age: {{ goat.age }}<br>
-    Location: {{ goat.localisation }}<br>
-    Birthdate: {{ goat.birthdate | date }}<br>
+  <div *ngIf="goat.img_path != '.'">
+    <img class="img-profile" text-center width="80" src='{{ apiUrl + goat.img_path }}'>
+  </div>
+  <h4 class="capitalize">
+    <label>Price:</label> €{{ goat.price }}<br>
+    <label>Gender:</label> {{ goat.gender }}<br>
+    <label>Breed:</label> <a (click)="openBreedInfoViewModel(goat.breed_id)">{{ goat.breed_name }}</a><br>
+    <label>Age:</label> {{ goat.age }}<br>
+    <label>Location:</label> {{ goat.localisation }}<br>
+    <label>Birthdate:</label> {{ goat.birthdate | date }}<br>
   </h4>
-  <h4 text-center>
-    Identification: {{ goat.identification }}<br>
-    Description: {{ goat.descrption }}
+  <h4>
+    <label>Identification:</label> {{ goat.identification }}<br>
+    <div *ngIf="goat.description">
+      <label>Description:</label> {{ goat.description }}
+    </div>
   </h4>
+  <br>
+  <br>
   <p>
-    <button ion-button full id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>
-    <button ion-button full id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>
+    <button ion-button large id="update-btn" (click)="openUpdateGoatViewModel(goat.id)">Update</button>
+    <button ion-button large id="remove-btn" (click)="removeConfirm(goat.id)">Remove</button>
   </p>
 </div>
 </ion-content>

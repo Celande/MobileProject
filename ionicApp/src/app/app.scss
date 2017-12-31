@@ -20,15 +20,22 @@
 }
 
 .profile {
-  text-align: center;
   background-color: white;
   border-radius: 5%;
+  align-items: center;
+  margin-top: 50px;
+}
+
+label {
+  float:left;
+  padding-left: 10%;
 }
 
 .card {
   text-align: center;
   background-color: white;
   border-radius: 5%;
+  align-items: center;
 }
 
 .show{
@@ -38,20 +45,21 @@
   padding-right:10%;
   padding-bottom:5%;
   text-align:center;
+  align-items: center;
 }
 
 #img-card {
   width:30%;
-  min-width: 100px;
-  text-align: center;
+  min-width: 200px;
+  margin: auto;
   border-radius: 20%;
   margin-top: 1%;
 }
 
 .img-profile {
   width:50%;
-  min-width: 100px;
-  text-align: center;
+  min-width: 200px;
+  margin: auto;
 }
 
 #update-btn{
@@ -59,33 +67,21 @@
   background-color: #FFE766;
   border-color: #FFE766;
   color: black;
-  width: 10%;
-  min-width: 60px;
-  margin-left: 5%;
-  margin-bottom: 1%;
 }
 #remove-btn{
   float: right;
   background-color: #FF5D5D;
   border-color: #FF5D5D;
-  width: 10%;
-  min-width: 60px;
-  margin-right: 5%;
-  margin-bottom: 1%;
 }
 #agree-btn{
   float: center;
   background-color: #329932;
   border-color: #329932;
-  width: 10%;
-  min-width: 60px;
-  margin-bottom: 1%;
 }
 
 #update-btn:hover{
   background-color: #FFDB1A;
   border-color: #FFDB1A;
-  width: 10%;
 }
 #remove-btn:hover{
   background-color: #FF1111;
