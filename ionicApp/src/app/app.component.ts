@@ -1,14 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, MenuController } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { GoatsViewModel } from '../viewmodel/goats/goats.viewmodel';
-import { AddGoatViewModel } from '../viewmodel/add_goat/add.goat.viewmodel';
-import { BreedsViewModel } from '../viewmodel/breeds/breeds.viewmodel';
+import { GoatsViewModel } from '../pages/viewmodel/goats/goats.viewmodel';
+import { AddGoatViewModel } from '../pages/viewmodel/add_goat/add.goat.viewmodel';
+import { BreedsViewModel } from '../pages/viewmodel/breeds/breeds.viewmodel';
 
 @Component({
-  templateUrl: './app.html'
+  templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -17,15 +17,10 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(
-    public platform: Platform,
-    public menu: MenuController,
-    public statusBar: StatusBar,
-    public splashScreen: SplashScreen
-  ) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    // set our app's pages
+    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Buy A Goat', component: GoatsViewModel },
       { title: 'Sell A Goat', component: AddGoatViewModel },
@@ -44,9 +39,8 @@ export class MyApp {
   }
 
   openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 }
